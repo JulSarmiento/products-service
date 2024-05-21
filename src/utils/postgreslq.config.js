@@ -8,7 +8,7 @@ const POSTGRESQL_USERNAME = process.env.POSTGRESQL_USERNAME;
 
 const caCert = fs.readFileSync(POSTGRESQL_SSL_CA);
 
-const sequelize = new Sequelize(`postgresql://${POSTGRESQL_USERNAME}:${POSTGRESQL_PASSWORD}@tightly-polished-skimmer.data-1.use1.tembo.io:5432/${POSTGRESQL_USERNAME}`, {
+export default new Sequelize(`postgresql://${POSTGRESQL_USERNAME}:${POSTGRESQL_PASSWORD}@tightly-polished-skimmer.data-1.use1.tembo.io:5432/${POSTGRESQL_USERNAME}`, {
   dialect: POSTGRESQL_DIALECT,
   dialectOptions: {
     ssl: {
@@ -24,14 +24,5 @@ const sequelize = new Sequelize(`postgresql://${POSTGRESQL_USERNAME}:${POSTGRESQ
   logging: false,
 });
 
-(async () => {
-  try {
-    await sequelize.authenticate();
-    console.log('Conexión exitosa');
-  } catch (error) {
-    console.error('Conexión fallida:', error);
-  }
-})();
 
 
-export default sequelize;
