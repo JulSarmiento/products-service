@@ -1,10 +1,7 @@
-import { Model, DataTypes } from "sequelize";
-import Sequelize from "sequelize";
+import { DataTypes } from "sequelize";
+import sequelize from "../utils/postgreslq.config.js"
 
-class Product extends Model {}
-
-Product.init(
-  {
+const Product = sequelize.define( 'Product', {
     id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
@@ -34,10 +31,9 @@ Product.init(
         len: [1, 10],
       },
     }
-  },
-  {
-    Sequelize,
-    modelName: "product",
+  }, {
+    tableName: 'products',
+    timestamps: true,
   }
 );
 
