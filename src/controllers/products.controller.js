@@ -28,7 +28,6 @@ export const getProducts = async(req, res, next) => {
 
 // CREATE A NEW PRODUCT
 export const createProduct = async (req, res, next) => {
-  console.log("estamos aqui :D ")
   try {
     const product = await Product.create(req.body);
     res.status(httpStatus.CREATED).json({

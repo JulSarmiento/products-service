@@ -3,7 +3,9 @@ import {
   getProducts,
   createProduct
 } from "../controllers/products.controller.js";
-import { validatedCreateProduct } from "../middlewares/index.js";
+import { validatedCreateProduct 
+  
+} from "../middlewares/index.js";
 import {
   addvanceSearch
 } from "../middlewares/index.js"
