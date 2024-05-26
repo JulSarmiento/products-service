@@ -2,18 +2,14 @@ import "dotenv/config.js"
 import sequelize from "../utils/postgreslq.config.js";
 import { Product } from "../models/index.js";
 
-const seedDatabase = async () => {
+(async () => {
   try {
-    await sequelize.authenticate();
-    console.log('Starting seeder');
-
     await sequelize.drop({ cascade: true, force: true });
-    console.log("All tables deleted");
-
     await sequelize.sync();
-    console.log("All tables created");
 
-    const products = [
+    console.log("Seeding database...");
+
+    const products = await Product.bulkCreate( [
       {
         name: "Smartphone XYZ",
         price: 699.99,
@@ -29,16 +25,14 @@ const seedDatabase = async () => {
         price: 199.99,
         stock: 100,
       }
-    ]
+    ])
 
-    await Product.bulkCreate(products);
-    console.log('Mock products have been added.');
-    console.table(products.map((product) => product.name));
+    console.log("Products created");
+    console.table(products.map(((product) => product.dataValues)))
 
-  }catch (error) {
+  } catch (error) {
     console.error('Unable to connect to the database:', error);
 
   } 
-};
+})()
 
-seedDatabase();

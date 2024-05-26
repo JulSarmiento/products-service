@@ -3,12 +3,12 @@ import fs from "fs";
 
 const POSTGRESQL_SSL_CA = process.env.POSTGRESQL_SSL_CA;
 const POSTGRESQL_DIALECT = process.env.POSTGRESQL_DIALECT;
-const POSTGRESQL_PASSWORD = process.env.POSTGRESQL_PASSWORD;
-const POSTGRESQL_USERNAME = process.env.POSTGRESQL_USERNAME;
+const POSTGRESQL_URL = process.env.POSTGRESQL_URL
+
 
 const caCert = fs.readFileSync(POSTGRESQL_SSL_CA);
 
-export default new Sequelize(`postgresql://${POSTGRESQL_USERNAME}:${POSTGRESQL_PASSWORD}@tightly-polished-skimmer.data-1.use1.tembo.io:5432/${POSTGRESQL_USERNAME}`, {
+export default new Sequelize(POSTGRESQL_URL, {
   dialect: POSTGRESQL_DIALECT,
   dialectOptions: {
     ssl: {

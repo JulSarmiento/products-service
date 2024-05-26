@@ -3,51 +3,32 @@ import { Op, Sequelize } from "sequelize";
 export default (req, _res, next) => {
   const where = {};
 
-  Object.entries(req.query).forEach(([key]) => {
-    // offset
-    if (key === "page") {
-      where.offset = parseInt((req.query.page || 1, 10) - 1);
+  Object.entries(req.query).forEach(([key, value]) => {
+    if (key === "page" || key === "size") return;
 
-      // limit
-    } else if (key === "size") {
-      where.limit = parseInt(req.query.size, 10);
-
-      // in
-    } else if (key.includes(".")) {
-      const modKey = `$${key}$`;
-      where[modKey] = Sequelize.where(
-        Sequelize.fn('unaccent', Sequelize.col(key)), {
-          [Op.iLike]:`%${req.query[key]}%`
-      });
-    } else if (key.includes("__lte")) {
+    if (key.includes("__lte")) {
       where[key.replace("__lte", "")] = {
-        [Op.lte]: req.query[key],
+        [Op.lte]: value,
       };
     } else if (key.includes("__in")) {
       where[key.replace("__in", "")] = {
-        [Op.in]: req.query[key].split(","),
+        [Op.in]: value.split(","),
       };
-
-      // startWith
     } else if (key.includes("__startWith")) {
       where[key.replace("__startWith", "")] = {
-        [Op.startsWith]: `${req.query[key]}%`,
+        [Op.startsWith]: `${value}%`,
       };
-
-      // endWith
     } else if (key.includes("__endsWith")) {
       where[key.replace("__endsWith", "")] = {
-        [Op.endsWith]: `%${req.query[key]}`,
+        [Op.endsWith]: `%${value}`,
       };
     } else {
-      where[key] = Sequelize.where(
-        Sequelize.fn('unaccent', Sequelize.col(key)), {
-          [Op.iLike]:`%${req.query[key]}%`
-      });
+      where[key] = {
+        [Op.iLike]: `%${value}%`
+      };
     }
   });
 
   req.where = where;
-
   next();
 };

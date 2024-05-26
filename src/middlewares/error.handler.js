@@ -6,8 +6,8 @@ const errorHandler = (err, _req, res, _next) => {
   res.status(httpStatus.INTERNAL_SERVER_ERROR).json({
     status: statusCode,
     code: httpStatus.INTERNAL_SERVER_ERROR,
-    message
+    message,
   });
-};
 
+};
 export default errorHandler
