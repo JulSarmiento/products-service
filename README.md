@@ -76,3 +76,7 @@
 15. **Monitoreo y Logging**
     - Configurar Stackdriver en GCP para el monitoreo y logging del microservicio.
     - Establecer alertas para supervisar el estado y rendimiento del servicio.
+
+
+
+- Cloud run
