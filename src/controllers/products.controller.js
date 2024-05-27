@@ -28,6 +28,28 @@ export const getProducts = async (req, res, next) => {
   }
 };
 
+export const getProductById = async (req, res, next) => {
+  try {
+    const { id } = req.params
+    const product = await Product.findByPk(id); 
+
+    if(!product) {
+      return res.status(httpStatus.NOT_FOUND).json({
+        success: false,
+        error: "Product not found"
+      });
+    };
+    
+    res.status(httpStatus.OK).json({
+      success: true,
+      data: product
+    });
+
+  } catch (error){
+    next(error);
+  };
+};
+
 // CREATE A NEW PRODUCT
 export const createProduct = async (req, res, next) => {
   try {
@@ -38,6 +60,52 @@ export const createProduct = async (req, res, next) => {
     });
   } catch (error){
     console.log(error)
+    next(error)
+  };
+};
+
+// Update a product by Id
+export const updateProduct = async (req, res, next) => {
+  try {
+
+    const { id } = req.params;
+    const product = await Product.findByPk(id);
+
+    if(!product) {
+      return res.status(httpStatus.NOT_FOUND).json({
+        success: false,
+        error: "Product not found"
+      });
+    };
+
+    await Product.update(req.body, {
+      where: { id },
+    });
+
+    const updatedProduct = await Product.findByPk(id);
+    res.status(httpStatus.OK).json({
+      success: true,
+      data: updatedProduct
+    });
+
+  } catch (error){
+    next(error);
+  };
+};
+
+
+// DELETE PRODUCT BY ID
+export const deleteProductById = async (req, res, next) => {
+  try {
+    const {id} = req.params;
+
+    await Product.destroy({where: {id}});
+    res.status(httpStatus.OK).json({
+      success: true,
+      data: {}
+    });
+
+  }catch (error){
     next(error)
   };
 };

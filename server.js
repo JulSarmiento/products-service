@@ -4,7 +4,7 @@ import sequelize from './src/utils/postgreslq.config.js';
 
 const PORT = process.env.PORT_TO_USE || 3000;
 
-const start = async () => {
+(async () => {
 
   try{
     await sequelize.sync() ;
@@ -18,6 +18,4 @@ const start = async () => {
     console.log(error);;
     process.exit((1));
   }
-}
-
-start();
+})();
