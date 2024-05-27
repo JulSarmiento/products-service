@@ -58,7 +58,7 @@ Este microservicio gestiona la información de los productos utilizando PostgreS
 
 1. Clonar el repositorio:
    ```bash
-   git clone https://github.com/tu-usuario/microservicio-productos.git
+   git clone https://github.com/JulSarmiento/products-service/tree/main
    cd microservicio-productos
 
 2. Instalar dependencias:
@@ -69,7 +69,7 @@ Este microservicio gestiona la información de los productos utilizando PostgreS
 3. Crear un archivo .env y configurar las variables de entorno:
 
    ```env
-   POSTGRESQL_URI=postgresql://user:password@localhost:5432/productos
+   POSTGRESQL_URL=postgresql://user:password@localhost:5432/productos
    PORT=3000
 
 4. Iniciar el servidor:
@@ -83,13 +83,13 @@ Este microservicio gestiona la información de los productos utilizando PostgreS
 
 1. POST /products: Crear un nuevo producto.
 
-2. GET /products/: Obtener un producto por ID.
+2. GET /products/:id : Obtener un producto por ID.
 
 3. GET /products: Obtener todos los productos.
 
-4. PUT /products/: Actualizar un producto por ID.
+4. PUT /products/:id : Actualizar un producto por ID.
 
-5. DELETE /products/: Eliminar un producto por ID.
+5. DELETE /products/:id : Eliminar un producto por ID.
 
 ## Dockerización
 
@@ -104,26 +104,26 @@ Este microservicio gestiona la información de los productos utilizando PostgreS
    version: '3.8'
 
    services:
-   db:
-      image: postgres:13
-      environment:
-         POSTGRES_DB: productos
-         POSTGRES_USER: user
-         POSTGRES_PASSWORD: password
-      ports:
-         - "5432:5432"
-      volumes:
-         - db_data:/var/lib/postgresql/data
+      db:
+         image: postgres:13
+         environment:
+            POSTGRES_DB: productos
+            POSTGRES_USER: user
+            POSTGRES_PASSWORD: password
+         ports:
+            - "5432:5432"
+         volumes:
+            - db_data:/var/lib/postgresql/data
 
-   app:
-      image: microservicio-productos
-      build: .
-      ports:
-         - "3000:3000"
-      environment:
-         POSTGRESQL_URI: postgresql://user:password@db:5432/productos
-      depends_on:
-         - db
+      app:
+         image: microservicio-productos
+         build: .
+         ports:
+            - "8080:8080"
+         environment:
+            POSTGRESQL_URI: postgresql://user:password@db:5432/productos
+         depends_on:
+            - db
 
    volumes:
    db_data:
@@ -147,10 +147,10 @@ Este microservicio gestiona la información de los productos utilizando PostgreS
 
    ```bash
    gcloud run deploy microservicio-productos \
-  --image gcr.io/your-project-id/microservicio-productos \
-  --platform managed \
-  --region us-central1 \
-  --allow-unauthenticated
+   --image gcr.io/your-project-id/microservicio-productos \
+   --platform managed \
+   --region us-central1 \
+   --allow-unauthenticated
 
 4. Configurar una API Gateway en GCP para gestionar las solicitudes entrantes:
 
