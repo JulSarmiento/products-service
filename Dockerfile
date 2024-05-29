@@ -15,8 +15,8 @@ COPY src src
 
 COPY server.js .
 
-EXPOSE 3000
+EXPOSE 8080
 
 ENTRYPOINT [ "node", "server.js" ] 
 
-HEALTHCHECK --interval=60s --timeout=60s --retries=3 CMD curl --silent --fail http://localhost:3000/health || exit 1
+HEALTHCHECK --interval=60s --timeout=60s --retries=3 CMD curl --silent --fail http://localhost:8080/health || exit 1
