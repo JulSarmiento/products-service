@@ -34,7 +34,7 @@ jobs:
 
     - name: save secret to file
       run: | 
-        echo $PRIVATE_KEY > private-key.pem
+        echo $PRIVATE_KEY > ca.crt
       env:
         PRIVATE_KEY: ${{ secrets.CA_RT }}
 
