@@ -32,6 +32,12 @@ jobs:
       run: |
         gcloud auth configure-docker
 
+    - name: save secret to file
+      run: | 
+        echo $PRIVATE_KEY > private-key.pem
+      env:
+        PRIVATE_KEY: ${{ secrets.CA_RT }}
+
     - name: Build Docker image
       run: |
         docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/products-service:$GITHUB_SHA .
