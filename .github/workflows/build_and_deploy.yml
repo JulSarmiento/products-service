@@ -8,6 +8,10 @@ on:
   push:
     branches:
       - main
+    paths-ignore:
+      - '**.md'
+      - 'docker-compose.yml'
+
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
