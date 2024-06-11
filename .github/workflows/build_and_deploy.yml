@@ -42,11 +42,11 @@ jobs:
 
     - name: Build Docker image
       run: |
-        docker build -t ${{ secrets.GCP_PROJECT_ID }}/products-service:$GITHUB_SHA .
+        docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/products-service:$GITHUB_SHA .
 
     - name: Push Docker image to Artifact
       run: |
-        docker push ${{ secrets.GCP_PROJECT_ID }}/products-service:${{ github.sha }}
+        docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/products-service:${{ github.sha }}
 
   deploy:
     runs-on: ubuntu-latest
@@ -62,7 +62,7 @@ jobs:
       - name: Deploy to Cloud Run
         run: |
           gcloud run deploy products-microservice \
-            --image ${{ secrets.GCP_PROJECT_ID }}/products-service:${{ github.sha }} \
+            --image gcr.io/${{ secrets.GCP_PROJECT_ID }}/products-service:${{ github.sha }} \
             --platform managed \
             --region us-central1 \
             --allow-unauthenticated
