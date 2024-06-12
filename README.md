@@ -6,7 +6,7 @@ Este microservicio gestiona la información de los productos utilizando PostgreS
 
 ## Historia de Usuario
 
-**Como** desarrolladora de backend, **quiero** crear un microservicio de API para gestionar productos utilizando PostgreSQL, **para** poder almacenar y gestionar la información de los productos de manera eficiente y segura.
+**Como** desarrollador de backend, **quiero** crear un microservicio de API para gestionar productos utilizando PostgreSQL, **para** poder almacenar y gestionar la información de los productos de manera eficiente y segura.
 
 ## Tareas
 
