@@ -65,6 +65,7 @@ jobs:
             --image gcr.io/${{ secrets.GCP_PROJECT_ID }}/products-service:${{ github.sha }} \
             --platform managed \
             --region us-central1 \
-            --allow-unauthenticated
+            --allow-unauthenticated \
+            --set-env-vars PORT=8080
 
 
