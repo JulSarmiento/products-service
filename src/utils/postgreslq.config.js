@@ -6,7 +6,7 @@ const POSTGRESQL_DIALECT = process.env.POSTGRESQL_DIALECT;
 const POSTGRESQL_URL = process.env.POSTGRESQL_URL
 
 
-const caCert = fs.readFileSync(POSTGRESQL_SSL_CA);
+const caCert = fs.readFileSync(POSTGRESQL_SSL_CA, {encoding:'utf8' });
 
 export default new Sequelize(POSTGRESQL_URL, {
   dialect: POSTGRESQL_DIALECT,
