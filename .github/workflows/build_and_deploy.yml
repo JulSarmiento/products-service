@@ -66,6 +66,6 @@ jobs:
             --platform managed \
             --region us-central1 \
             --allow-unauthenticated \
-            --set-secrets POSTGRESQL_URL=${{ secrets.POSTGRESQL_URL }}
+            --set-secrets POSTGRESQL_URL=projects/605999637992/secrets/POSTGRESQL_URL
 
 
