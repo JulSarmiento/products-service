@@ -12,6 +12,8 @@ export default new Sequelize(POSTGRESQL_URL, {
   dialect: POSTGRESQL_DIALECT,
   dialectOptions: {
     ssl: {
+      require: true,
+      rejectUnauthorized: false,
       ca: caCert.toString(),
     },
   },
