@@ -66,6 +66,6 @@ jobs:
             --platform managed \
             --region us-central1 \
             --allow-unauthenticated \
-            --set-env-vars ${{ secrets.POSTGRESQL_URL }}
+            --set-secrets POSTGRESQL_URL=projects/${{ secrets.GCP_PROJECT_ID }}/secrets/POSTGRESQL_URL:latest,POSTGRESQL_SSL_CA=projects/${{ secrets.GCP_PROJECT_ID }}/secrets/POSTGRESQL_SSL_CA:latest
 
 
