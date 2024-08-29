@@ -1,3 +1,5 @@
+[![Deploy to Google Cloud Run](https://github.com/JulSarmiento/products-service/actions/workflows/build_and_deploy.yml/badge.svg)](https://github.com/JulSarmiento/products-service/actions/workflows/build_and_deploy.yml)
+
 # Microservicio de Productos
 
 ## Descripción
