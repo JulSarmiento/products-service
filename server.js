@@ -1,8 +1,8 @@
-import "dotenv/config";
 import app from "./src/app.js";
-import sequelize from './src/utils/postgreslq.config.js';
+import sequelize from './src/utils/postgresql.config.js';
+import envVariables from './src/utils/env.config.js';
 
-const PORT = process.env.PORT || 3000;
+const PORT = envVariables.PORT || 3000;
 
 (async () => {
 

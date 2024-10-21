@@ -5,7 +5,7 @@ import {
   getProductById,
   updateProduct,
   deleteProductById
-} from "../controllers/products.controller.js";
+} from "../controllers/index.js";
 import { 
   validatedCreateProduct,
   validateUpdateProduct 

@@ -1,10 +1,9 @@
 import { Sequelize } from "sequelize";
 import fs from "fs";
+import envVariables from "../utils/env.config.js";
 
-const POSTGRESQL_SSL_CA = process.env.POSTGRESQL_SSL_CA;
-const POSTGRESQL_DIALECT = process.env.POSTGRESQL_DIALECT;
-const POSTGRESQL_URL = process.env.POSTGRESQL_URL
-
+const { POSTGRESQL_SSL_CA, POSTGRESQL_DIALECT, POSTGRESQL_URL } = envVariables;
+console.log(POSTGRESQL_SSL_CA);
 
 const caCert = fs.readFileSync(POSTGRESQL_SSL_CA, {encoding:'utf8' });
 

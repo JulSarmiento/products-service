@@ -6,9 +6,9 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node --watch server.js",
+    "start": "node  --watch --env-file=.env server.js",
     "start:nodemon": "nodemon server.js",
-    "seeder": "node src/scripts/seeder.js"
+    "seeder": "node --env-file=.env src/scripts/seeder.js"
   },
   "keywords": [],
   "author": "",

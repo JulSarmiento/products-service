@@ -1,5 +1,5 @@
 import { DataTypes } from "sequelize";
-import sequelize from "../utils/postgreslq.config.js"
+import sequelize from "../utils/postgresql.config.js"
 
 const Product = sequelize.define( 'Product', {
     id: {
@@ -23,6 +23,17 @@ const Product = sequelize.define( 'Product', {
         len: [1, 10],
       },
     },
+    imageSrc: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    imageAlt: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [3, 350],
+      },
+    },
     stock: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -30,8 +41,13 @@ const Product = sequelize.define( 'Product', {
         isNumeric: true,
         len: [1, 10],
       },
-    }
+    },
+    active: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true,
+    },
   }, {
+    sequelize,
     tableName: 'products',
     timestamps: true,
   }
