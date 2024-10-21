@@ -22,7 +22,7 @@ export const updateProductSchema = Joi.object({
 // Category schema
 export const createCategorySchema = Joi.object({
   name: Joi.string().min(3).max(50).required(),
-  active: Joi.boolean().required(),
+  active: Joi.boolean().optional(),
 });
 
 export const updateCategorySchema = Joi.object({
@@ -33,11 +33,13 @@ export const updateCategorySchema = Joi.object({
 // Subcategory schema
 export const createSubcategorySchema = Joi.object({
   name: Joi.string().min(3).max(50).required(),
-  active: Joi.boolean().required(),
+  categoryId: Joi.string().uuid().required(),
+  active: Joi.boolean().optional(),
 });
 
 export const updateSubcategorySchema = Joi.object({
   name: Joi.string().min(3).max(50).optional(),
+  categoryId: Joi.string().uuid().optional(),
   active: Joi.boolean().optional(),
 });
 

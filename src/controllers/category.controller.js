@@ -1,4 +1,5 @@
 import httpStatus from "http-status";
+import { Op } from "sequelize";
 import { Category, Subcategory } from "../models/index.js";
 
 export const getCategories = async (req, res, next) => {
@@ -6,7 +7,7 @@ export const getCategories = async (req, res, next) => {
     const { page = 1, limit = 10 } = req.query;
     const offset = (page - 1) * limit;
 
-    const categories = await Category.findAndCountAll({
+    const { rows, count: totalItems } = await Category.findAndCountAll({
       include: Subcategory,
       where: req.where,
       limit,
@@ -15,19 +16,21 @@ export const getCategories = async (req, res, next) => {
 
     res.status(httpStatus.OK).json({
       success: true,
-      data: categories,
-      totalItems: categories.count,
-      totalPages: Math.ceil(categories.count / limit),
+      rows,
+      totalItems,
+      totalPages: Math.ceil(totalItems / limit),
       currentPage: parseInt(page, 10),
     });
   } catch (error) {
     next(error);
   }
-}
+};
 
 export const getCategoryById = async (req, res, next) => {
+
+  const { id } = req.params;
   try {
-    const category = await Category.findByPk(req.params.id, {
+    const category = await Category.findOne( {[Op.or] : [{id}, {slug: id}]}, {
       include: Subcategory,
     });
 
@@ -40,7 +43,7 @@ export const getCategoryById = async (req, res, next) => {
 
     res.status(httpStatus.OK).json({
       success: true,
-      data: category,
+      category,
     });
   } catch (error) {
     next(error);
@@ -53,7 +56,7 @@ export const createCategory = async (req, res, next) => {
 
     res.status(httpStatus.CREATED).json({
       success: true,
-      data: category,
+      category,
     });
   } catch (error) {
     next(error);
@@ -75,7 +78,7 @@ export const updateCategory = async (req, res, next) => {
 
     res.status(httpStatus.OK).json({
       success: true,
-      data: category,
+      category,
     });
   } catch (error) {
     next(error);
@@ -84,15 +87,15 @@ export const updateCategory = async (req, res, next) => {
 
 export const deleteCategoryById = async (req, res, next) => {
   try {
-    const { categoryId } = req.params;
+    const { id } = req.params;
     await Category.destroy({
-      where: { id: categoryId }
+      where: { id },
     });
     res.status(httpStatus.OK).json({
       success: true,
-      message: `Category with id ${categoryId} deleted`
+      message: `Category with id ${id} deleted`,
     });
   } catch (error) {
     next(error);
-  };
+  }
 };

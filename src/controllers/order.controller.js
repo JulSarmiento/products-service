@@ -6,16 +6,16 @@ export const getOrders = async (req, res, next) => {
     const { page = 1, limit = 10 } = req.query;
     const offset = (page - 1) * limit;
 
-    const orders = await Order.findAndCountAll({
+    const {rows, count: totalItems} = await Order.findAndCountAll({
       limit: parseInt(limit, 10),
       offset: parseInt(offset, 10),
     });
 
     res.status(httpStatus.OK).json({
       success: true,
-      data: orders,
-      totalItems: orders.count,
-      totalPages: Math.ceil(orders.count / limit),
+      rows,
+      totalItems,
+      totalPages: Math.ceil(totalItems / limit),
       currentPage: parseInt(page, 10),
     });
   } catch (error) {
@@ -39,7 +39,7 @@ export const getOrderById = async (req, res, next) => {
 
     res.status(httpStatus.OK).json({
       success: true,
-      data: order,
+      order,
     });
 
   } catch (error) {
@@ -87,7 +87,7 @@ export const createOrder = async (req, res, next) => {
 
     res.status(httpStatus.CREATED).json({
       success: true,
-      data: order,
+      order,
     });
 
   } catch (error) {

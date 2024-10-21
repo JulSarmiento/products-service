@@ -10,7 +10,7 @@ export const getProducts = async (req, res, next) => {
     const { page = 1, limit = 10 } = req.query;
     const offset = (page - 1) * limit;
 
-    const { rows: products, count } = await Product.findAndCountAll({
+    const { rows: products, count: totalItems } = await Product.findAndCountAll({
       where: req.where,
       limit: parseInt(limit, 10),
       offset: parseInt(offset, 10),
@@ -18,9 +18,9 @@ export const getProducts = async (req, res, next) => {
 
     res.status(httpStatus.OK).json({
       success: true,
-      data: products,
-      totalItems: count,
-      totalPages: Math.ceil(count / limit),
+      products,
+      totalItems,
+      totalPages: Math.ceil(totalItems / limit),
       currentPage: parseInt(page, 10),
     });
   } catch (error) {
@@ -42,7 +42,7 @@ export const getProductById = async (req, res, next) => {
     
     res.status(httpStatus.OK).json({
       success: true,
-      data: product
+      product
     });
 
   } catch (error){
@@ -56,7 +56,7 @@ export const createProduct = async (req, res, next) => {
     const product = await Product.create(req.body);
     res.status(httpStatus.CREATED).json({
       success: true,
-      data: product,
+      product,
     });
   } catch (error){
     console.log(error)
@@ -85,7 +85,7 @@ export const updateProduct = async (req, res, next) => {
     const updatedProduct = await Product.findByPk(id);
     res.status(httpStatus.OK).json({
       success: true,
-      data: updatedProduct
+      updatedProduct
     });
 
   } catch (error){

@@ -7,7 +7,7 @@ import { Cart, CartItem } from "./cart.model.js";
 
 const FOREIGN_CONFIG = { allowNull: false, type: DataTypes.UUID };
 
-Category.hasMany(Subcategory, { FOREIGN_CONFIG });
+Category.hasMany(Subcategory, { FOREIGN_CONFIG, foreignKey: 'categoryId' });
 
 Product.belongsTo(Subcategory, { FOREIGN_CONFIG });
 

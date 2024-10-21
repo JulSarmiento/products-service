@@ -19,7 +19,7 @@ export const getCartById = async (req, res, next) => {
 
     res.status(httpStatus.OK).json({
       success: true,
-      data: cart,
+      cart,
     });
 
   } catch (error) {

@@ -17,16 +17,16 @@ export const getSubcategories = async (req, res, next) => {
     const { page = 1, limit = 10 } = req.query;
     const offset = (page - 1) * limit;
 
-    const subcategories = await Subcategory.findAndCountAll({
+    const {rows, count: totalItems} = await Subcategory.findAndCountAll({
       where: req.where,
       limit,
       offset
     });
     res.status(httpStatus.OK).json({
       success: true,
-      data: subcategories,
-      totalItems: subcategories.count,
-      totalPages: Math.ceil(subcategories.count / limit),
+      rows,
+      totalItems,
+      totalPages: Math.ceil(totalItems / limit),
       currentPage: parseInt(page, 10),
     });
   } catch (error) {
@@ -36,10 +36,10 @@ export const getSubcategories = async (req, res, next) => {
 
 export const getSubcategoryById = async (req, res, next) => {
   try {
-    const { subcategoryId } = req.params;
-    const subcategory = await Subcategory.findByPk(subcategoryId);
+    const { id } = req.params;
+    const subcategory = await Subcategory.findOne( {[Op.or] : [{id}, {slug: id}]});
 
-    if (!subcategory) {
+    if (!id) {
       return res.status(httpStatus.NOT_FOUND).json({
         success: false,
         error: "Subcategory not found"
@@ -48,7 +48,7 @@ export const getSubcategoryById = async (req, res, next) => {
 
     res.status(httpStatus.OK).json({
       success: true,
-      data: subcategory
+      subcategory
     });
 
   } catch (error) {
@@ -70,7 +70,7 @@ export const createSubcategory = async (req, res, next) => {
     const subcategory = await Subcategory.create(req.body);
     res.status(httpStatus.CREATED).json({
       success: true,
-      data: subcategory
+      subcategory
     });
   } catch (error) {
     next(error);
@@ -113,13 +113,13 @@ export const updateSubcategory = async (req, res, next) => {
  */
 export const deleteSubcategoryById = async (req, res, next) => {
   try {
-    const { subcategoryId } = req.params;
+    const { id } = req.params;
     await Subcategory.destroy({
-      where: { id: subcategoryId }
+      where: { id }
     });
     res.status(httpStatus.OK).json({
       success: true,
-      message: `Subcategory with id ${subcategoryId} deleted`
+      message: `Subcategory with id ${id} deleted`
     });
   } catch (error) {
     next(error);
