@@ -9,7 +9,7 @@ const FOREIGN_CONFIG = { allowNull: false, type: DataTypes.UUID };
 
 Category.hasMany(Subcategory, { FOREIGN_CONFIG, foreignKey: 'categoryId' });
 
-Product.belongsTo(Subcategory, { FOREIGN_CONFIG });
+Product.belongsTo(Subcategory, { FOREIGN_CONFIG, foreignKey: 'subcategoryId' });
 
 Cart.belongsTo(Product, {
   ...FOREIGN_CONFIG,

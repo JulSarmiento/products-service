@@ -1,4 +1,5 @@
 import { DataTypes } from "sequelize";
+import slugify from "slugify";
 import sequelize from "../utils/postgresql.config.js"
 
 const Product = sequelize.define( 'Product', {
@@ -46,10 +47,26 @@ const Product = sequelize.define( 'Product', {
       type: DataTypes.BOOLEAN,
       defaultValue: true,
     },
+    slug: {
+      type: DataTypes.STRING,
+      unique: true,
+    },
   }, {
     sequelize,
     tableName: 'products',
     timestamps: true,
+    hooks: {
+      beforeCreate: (product) => {
+        if(product.name) {
+          product.slug = slugify(product.name, { lower: true });
+        }
+      },
+      beforeUpdate: (product) => {
+        if(product.name) {  
+        product.slug = slugify(product.name, { lower: true });
+        }
+      },
+    },
   }
 );
 

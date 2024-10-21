@@ -31,7 +31,7 @@ export const getProducts = async (req, res, next) => {
 export const getProductById = async (req, res, next) => {
   try {
     const { id } = req.params
-    const product = await Product.findByPk(id); 
+    const product = await Product.findOne( {[Op.or] : [{id}, {slug: id}]}); 
 
     if(!product) {
       return res.status(httpStatus.NOT_FOUND).json({

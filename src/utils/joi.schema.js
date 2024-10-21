@@ -8,6 +8,7 @@ export const createProductSchema = Joi.object({
   imageSrc: Joi.string().uri().required(),
   imageAlt: Joi.string().min(3).max(350).required(),
   active: Joi.boolean().optional(),
+  subcategoryId: Joi.string().uuid().required(),
 });
 
 export const updateProductSchema = Joi.object({
@@ -17,6 +18,7 @@ export const updateProductSchema = Joi.object({
   imageSrc: Joi.string().uri().optional(),
   imageAlt: Joi.string().min(3).max(350).optional(),
   active: Joi.boolean().optional(),
+  subcategoryId: Joi.string().uuid().optional(),
 });
 
 // Category schema
