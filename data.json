@@ -1,0 +1,152 @@
+// Subcategories
+
+{
+  "name": "Camisetas",
+  "categoryId": ""
+}
+
+{
+  "name": "Chaquetas",
+  "categoryId": ""
+}
+
+{
+  "name": "Termos",
+  "categoryId": ""
+}
+
+{
+  "name": "Agendas",
+  "categoryId": ""
+}
+
+{
+  "name": "Blusas",
+  "categoryId": ""
+}
+
+{
+  "name": "Vestidos",
+  "categoryId": ""
+}
+
+// Category
+
+{
+  "name": "Accesorios"
+}
+
+{
+  "name": "Hombre"
+}
+
+{
+  "name": "Mujer"
+}
+
+// Products
+
+{
+  "name": "Blusa Básica Negra",
+  "price": 20,
+  "imageSrc": "https://tailwindui.com/plus/img/ecommerce-images/product-page-01-related-product-01.jpg",
+  "imageAlt": "Cerca de un paquete de camisetas básicas de otoño con camisetas en blanco roto, ocre, oliva y negro.",
+  "stock": 30,
+  "subcategoryId": ""
+}
+
+{
+  "name": "Camiseta Básica Crema",
+  "price": 35,
+  "imageSrc": "https://tailwindui.com/plus/img/ecommerce-images/product-page-01-related-product-02.jpg",
+  "imageAlt": "Modelos sentados espalda con espalda, usando camiseta básica en negro y hueso.",
+  "stock": 20,
+  "subcategoryId": ""
+},
+{
+  "name": "Camiseta Básica Gris",
+  "price": 89,
+  "imageSrc": "https://tailwindui.com/plus/img/ecommerce-images/product-page-01-related-product-03.jpg",
+  "imageAlt": "Parte superior con cordón con cierre de bucle elástico y acolchado interior texturizado.",
+  "stock": 10,
+  "subcategoryId": ""
+},
+{
+  "name": "Blusa Básica con Puntos",
+  "price": 120,
+  "imageSrc": "https://tailwindui.com/plus/img/ecommerce-images/product-page-01-related-product-04.jpg",
+  "imageAlt": "Mano sosteniendo un lápiz mecánico de acero negro mecanizado con punta y parte superior de latón.",
+  "stock": 15,
+  "subcategoryId": ""
+},
+{
+  "name": "Paquete de Blusas Básicas Gráficas",
+  "price": 25,
+  "imageSrc": "https://tailwindui.com/plus/img/ecommerce-images/category-page-02-image-card-06.jpg",
+  "imageAlt": "Tres camisetas en gris, blanco y azul dispuestas sobre una mesa con el mismo dibujo lineal de manos y formas superpuestas en la parte delantera de la camiseta.",
+  "stock": 5,
+  "subcategoryId": ""
+},
+{
+  "name": "Botella de Viaje",
+  "price": 50,
+  "imageSrc": "https://tailwindui.com/plus/img/ecommerce-images/category-page-04-image-card-02.jpg",
+  "imageAlt": "Botella aislada verde oliva con tapa de rosca acampanada y parte superior plana.",
+  "stock": 10,
+  "subcategoryId": ""
+},
+{
+  "name": "Bloc de Notas",
+  "price": 150,
+  "imageSrc": "https://tailwindui.com/plus/img/ecommerce-images/category-page-04-image-card-03.jpg",
+  "imageAlt": "Persona usando un bolígrafo para tachar una tarea en una tarjeta de papel de productividad.",
+  "stock": 20,
+  "subcategoryId": ""
+},
+{
+  "name": "Cuaderno",
+  "price": 70,
+  "imageSrc": "https://tailwindui.com/plus/img/ecommerce-images/category-page-04-image-card-04.jpg",
+  "imageAlt": "Mano sosteniendo un lápiz mecánico de acero negro mecanizado con punta y parte superior de latón.",
+  "stock": 15,
+  "subcategoryId": ""
+}
+
+// carts
+{
+  "email": "ramss@gmail.com",
+  "count": 2,
+  "productId": "9ed786a9-0dc4-4130-b602-312a2d2bec4d"
+}
+
+// Orders
+{
+  "cartId": "90fe63a0-34f2-469c-970b-8de140213531",
+  "status": "Pending",
+  "name": {
+    "firstName": "John",
+    "lastName": "Doe"
+  },
+  "email": "john.doe@example.com",
+  "document": {
+    "type": "passport",
+    "number": "123456789"
+  },
+  "phone": {
+    "area": "123",
+    "number": "4567890"
+  },
+  "payment": {
+    "reference": "PAY123456",
+    "method": "credit card",
+    "shippingType": "standard",
+    "shippingCost": 10.0,
+    "status": "paid"
+  },
+  "shipping": {
+    "address": "123 Main St",
+    "city": "Anytown",
+    "state": "Anystate",
+    "zip": "12345"
+  }
+}

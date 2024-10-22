@@ -10,7 +10,7 @@ const Cart = sequelize.define(
       primaryKey: true,
       unique: true,
     },
-    userId: {
+    email: {
       type: DataTypes.STRING,
       unique: true,
       allowNull: false,

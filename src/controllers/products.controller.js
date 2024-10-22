@@ -1,4 +1,5 @@
 import httpStatus from "http-status";
+import { Op } from "sequelize";
 import { Product } from "../models/index.js";
 
 

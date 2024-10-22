@@ -11,7 +11,14 @@ Category.hasMany(Subcategory, { FOREIGN_CONFIG, foreignKey: 'categoryId' });
 
 Product.belongsTo(Subcategory, { FOREIGN_CONFIG, foreignKey: 'subcategoryId' });
 
-Cart.belongsTo(Product, {
+Product.belongsToMany(Cart, {
+  ...FOREIGN_CONFIG,
+  through: CartItem,
+  onDelete: "CASCADE",
+  onUpdate: "CASCADE",
+  hooks: true,
+});
+Cart.belongsToMany(Product, {
   ...FOREIGN_CONFIG,
   through: CartItem,
   onDelete: "CASCADE",

@@ -1,6 +1,6 @@
 import httpStatus from "http-status";
+import { Op } from "sequelize";
 import { Subcategory } from "../models/index.js";
-
 
 /**
  * 

@@ -23,7 +23,7 @@ router.get("/health", (_req, res) => {
   .use("/products", productsRouter)
   .use("/categories", categoriesRouter)
   .use("/subcategories", subCategoriesRouter)
-  .use("/carts", cartRouter)
+  .use("/cart", cartRouter)
   .use("/orders", orderRouter);
 
 

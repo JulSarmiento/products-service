@@ -48,39 +48,56 @@ export const getOrderById = async (req, res, next) => {
 };
 
 export const createOrder = async (req, res, next) => {
-  const { cartId } = req.params;
-  const { name, email, document, phone, payment, shippingAddress, shipping  } = req.body;
+  
+  const { cartId, status, name, email, document, phone, payment, shipping } = req.body;
 
   try {
+    console.log("Body", req.body); 
+    console.log("CartId", req.body.cartId);
     const cart = await Cart.findByPk(cartId, {
       include: [Product],
     });
+    console.log("Cart", cart);
 
     if (!cart) {
       return res.status(httpStatus.NOT_FOUND).json({
         success: false,
         error: "Cart not found",
       });
-    };
+    }
+
+    // Crear la orden
+    const items = cart.Products.map(product => ({
+      productId: product.id,
+      quantity: product.CartItem.count,
+      price: product.price,
+    }));
 
     const order = await Order.create({
+      status,
       name,
       email,
       document,
       phone,
       payment,
-      shippingAddress,
       shipping,
+      items: {
+        products: items,
+        total: items.reduce((total, item) => total + item.price * item.quantity, 0),
+      },
+      total: items.reduce((total, item) => total + item.price * item.quantity, 0) + shipping.cost,
     });
 
+    // Actualizar el stock de los productos
     await Promise.all(
-      cart.products.map(async ({ id, cartItem }) => {
-        const product = await Product.findByPk(id);
-        product.stock -= cartItem.count;
-        return product.save();
+      cart.Products.map(async product => {
+        const productInstance = await Product.findByPk(product.id);
+        productInstance.stock -= product.CartItem.count;
+        return productInstance.save();
       })
     );
-    
+
+    // Eliminar los ítems del carrito
     await CartItem.destroy({
       where: { cartId },
     });
@@ -89,11 +106,9 @@ export const createOrder = async (req, res, next) => {
       success: true,
       order,
     });
-
   } catch (error) {
     next(error);
   }
-
 };
 
 export const updateOrder = async (req, res, next) => {

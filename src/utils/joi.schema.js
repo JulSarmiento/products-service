@@ -47,6 +47,7 @@ export const updateSubcategorySchema = Joi.object({
 
 // Order schema
 export const createOrderSchema = Joi.object({
+  cartId: Joi.string().uuid().required(),
   orderStatus: Joi.string()
     .valid(
       "Pending",
@@ -78,29 +79,25 @@ export const createOrderSchema = Joi.object({
       shippingCost: Joi.number().required(),
       status: Joi.string().required().valid("pending", "approved", "declined"),
     }).required(),
-    shippingAddress: Joi.object({
+    shipping: Joi.object({
       address: Joi.string().required(),
       city: Joi.string().required(),
       state: Joi.string().required(),
       zip: Joi.string().required(),
     }).required(),
-    oderData: Joi.object({
-      products: Joi.array()
-        .items(
-          Joi.object({
-            productId: Joi.string().required(),
-            quantity: Joi.number().required(),
-          })
-        )
-        .required(),
-      total: Joi.number().required(),
-    }).required(),
   }).required(),
 });
 
 export const updateOrderSchema = Joi.object({
+  cartId: Joi.string().uuid().optional(),
   orderStatus: Joi.string()
-    .valid("pending", "completed", "cancelled")
+    .valid(
+      "Pending",
+      "Payment Verified",
+      "Processing",
+      "Shipped",
+      "Delivered",
+      "cancelled")
     .optional(),
   paymentData: Joi.object({
     card: Joi.object({
@@ -116,11 +113,13 @@ export const updateOrderSchema = Joi.object({
 // Cart and CartItem Schema
 
 export const createCartSchema = Joi.object({
+  email: Joi.string().email().required(),
   count: Joi.number().min(0).required(),
   productId: Joi.string().uuid().required(),
 });
 
 export const updateCartSchema = Joi.object({
+  email: Joi.string().email().optional(),
   count: Joi.number().min(0).optional(),
   productId: Joi.string().uuid().required(),
 });
