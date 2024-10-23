@@ -43,3 +43,5 @@ export {
   validatedCreateCart,
   validateUpdateCart
 };
+
+export { findItem, findCart, findOrder} from './items.js';

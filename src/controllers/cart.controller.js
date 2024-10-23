@@ -5,9 +5,9 @@ import { Cart, CartItem, Product } from "../models/index.js";
 export const getCartById = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const whereClause = id.includes('@') ? { email: id } : { id };
+
     const cart = await Cart.findOne({
-      where: whereClause,
+      where: id.includes("@") ? { email: id } : { id },
       include: [Product],
     });
 
@@ -22,53 +22,61 @@ export const getCartById = async (req, res, next) => {
       success: true,
       cart,
     });
-
   } catch (error) {
     next(error);
   }
 };
 
-
 export const addProductToCart = async (req, res, next) => {
   const { productId, count, email } = req.body;
-  const { id } = req.params || {};
+  const { id } = req.params;
 
   try {
-    const whereClause = id ? { id } : { email };
-    const [cart] = await Cart.findOrCreate({
-      where: whereClause,
+    const [cart, created] = await Cart.findOrCreate({
+      where: {
+        [Op.or]: [{ id }, { email: id || email }],
+      },
       include: [Product],
+      defaults: {
+        email,
+      },
     });
 
     if (count === 0) {
-      await CartItem.destroy({
-        where: { CartId: cart.id, productId },
-      });
+      await cart.removeProduct(Product.findByPk(productId));
 
-      res.status(httpStatus.OK).json({
+      return res.status(httpStatus.OK).json({
         success: true,
         data: `Product removed from cart`,
       });
-
-      return;
     }
-
     const product = await Product.findOne({
-      where: { id: productId, stock: { [Op.gt]: count } },
+      where: {
+      id: productId,
+      },
     });
 
     if (!product) {
-      res.status(httpStatus.NOT_FOUND).json({
-        success: false,
-        message: "Product not found or not enough stock",
+      return res.status(httpStatus.NOT_FOUND).json({
+      success: false,
+      message: "Product not found",
       });
-      return;
     }
 
-    await CartItem.create({ CartId: cart.id, ProductId: product.id, count });
-    await cart.reload({ include: [Product] });
+    if (product.stock < count) {
+      return res.status(httpStatus.BAD_REQUEST).json({
+      success: false,
+      message: "Not enough stock",
+      });
+    }
+
+    
+
+    await cart.addProduct(product, { through: { count } });
+    await cart.reload();
 
     res.status(httpStatus.OK).json({
+      created,
       success: true,
       data: cart,
     });
@@ -76,11 +84,3 @@ export const addProductToCart = async (req, res, next) => {
     next(error);
   }
 };
-
-
-
-
-
-
-
-

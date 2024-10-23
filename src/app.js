@@ -6,7 +6,7 @@ import { errorHandler } from "./middlewares/index.js";
 
 const app = Express();
 
-app.use(log('dev'));
+app.use(log(process.env.NODE_ENV));
 
 app.use(Express.json());
 app.use(Express.urlencoded({extended: true}));
@@ -14,6 +14,5 @@ app.use(Express.urlencoded({extended: true}));
 app.use(routes);
 
 app.use(errorHandler);
-
 
 export default app;

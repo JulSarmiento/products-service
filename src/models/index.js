@@ -18,6 +18,7 @@ Product.belongsToMany(Cart, {
   onUpdate: "CASCADE",
   hooks: true,
 });
+
 Cart.belongsToMany(Product, {
   ...FOREIGN_CONFIG,
   through: CartItem,

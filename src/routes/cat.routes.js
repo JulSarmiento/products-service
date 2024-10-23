@@ -5,12 +5,12 @@ import {
 } from '../controllers/index.js';
 
 import {
-  validateUpdateCart
+  validatedCreateCart
 } from '../middlewares/index.js';
 
 const router = express.Router();
 
 router.get('/:id', getCartById);
-router.post('/:id?', [validateUpdateCart], addProductToCart);
+router.post('/:id?', [validatedCreateCart], addProductToCart);
 
 export default router;

@@ -48,16 +48,6 @@ export const updateSubcategorySchema = Joi.object({
 // Order schema
 export const createOrderSchema = Joi.object({
   cartId: Joi.string().uuid().required(),
-  orderStatus: Joi.string()
-    .valid(
-      "Pending",
-      "Payment Verified",
-      "Processing",
-      "Shipped",
-      "Delivered",
-      "cancelled"
-    )
-    .required(),
   name: Joi.object({
     firstName: Joi.string().required(),
     lastName: Joi.string().required(),

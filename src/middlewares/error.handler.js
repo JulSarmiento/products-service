@@ -1,6 +1,8 @@
 import httpStatus from "http-status";
 
 const errorHandler = (err, _req, res, _next) => {
+  console.error(err);
+  
   const { statusCode, message } = err;
 
   res.status(httpStatus.INTERNAL_SERVER_ERROR).json({

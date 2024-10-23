@@ -1,0 +1,28 @@
+{
+  "name": {
+    "firstName": "John",
+    "lastName": "Doe"
+  },
+  "email": "john.doe@example.com",
+  "document": {
+    "type": "passport",
+    "number": "123456789"
+  },
+  "phone": {
+    "area": "123",
+    "number": "4567890"
+  },
+  "payment": {
+    "reference": "PAY123456",
+    "method": "credit card",
+    "shippingType": "standard",
+    "shippingCost": 10.0,
+    "status": "approved"
+  },
+  "shipping": {
+    "address": "123 Main St",
+    "city": "Anytown",
+    "state": "Anystate",
+    "zip": "12345"
+  }
+}
