@@ -43,6 +43,8 @@ export const createOrder = async (req, res, next) => {
   try {
     const { cart } = req;
 
+    console.log("Cart in order controller", cart.Products);  
+
     let total = 0;
 
     // Productos a actualizar

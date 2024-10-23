@@ -1,6 +1,6 @@
 import httpStatus from "http-status";
 import { Op } from "sequelize";
-import { Cart, CartItem, Product } from "../models/index.js";
+import { Cart, Product } from "../models/index.js";
 
 export const getCartById = async (req, res, next) => {
   try {

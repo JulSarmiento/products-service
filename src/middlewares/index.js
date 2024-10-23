@@ -44,4 +44,4 @@ export {
   validateUpdateCart
 };
 
-export { findItem, findCart, findOrder} from './items.js';
+export { findItem, findCartInBody, findOrder} from './items.js';

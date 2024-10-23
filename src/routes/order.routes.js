@@ -1,5 +1,5 @@
 import express from "express";
-import { addvanceSearch, findOrder, findCart } from "../middlewares/index.js";
+import { addvanceSearch, findOrder, findCartInBody } from "../middlewares/index.js";
 import {
   getOrders,
   getOrderById,
@@ -11,7 +11,7 @@ const router = express.Router();
 
 router.get("/", [addvanceSearch], getOrders);
 router.get("/:id", [findOrder], getOrderById);
-router.post("/", [findCart], createOrder);
+router.post("/", [findCartInBody], createOrder);
 router.put("/:id", [findOrder], updateOrder);
 
 export default router;

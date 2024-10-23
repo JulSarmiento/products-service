@@ -47,7 +47,7 @@ export const updateSubcategorySchema = Joi.object({
 
 // Order schema
 export const createOrderSchema = Joi.object({
-  cartId: Joi.string().uuid().required(),
+  cartId: Joi.string().required(),
   name: Joi.object({
     firstName: Joi.string().required(),
     lastName: Joi.string().required(),
