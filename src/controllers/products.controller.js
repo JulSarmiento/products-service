@@ -1,7 +1,6 @@
 import httpStatus from "http-status";
 import { Op } from "sequelize";
-import { Product } from "../models/index.js";
-
+import { Product, Subcategory, Category } from "../models/index.js";
 
 // GET ALL PRODUCTS
 export const getProducts = async (req, res, next) => {
@@ -10,12 +9,23 @@ export const getProducts = async (req, res, next) => {
 
     const { page = 1, limit = 10 } = req.query;
     const offset = (page - 1) * limit;
-
-    const { rows: products, count: totalItems } = await Product.findAndCountAll({
-      where: req.where,
-      limit: parseInt(limit, 10),
-      offset: parseInt(offset, 10),
-    });
+    const { rows: products, count: totalItems } = await Product.findAndCountAll(
+      {
+        where: req.where || {},
+        limit: parseInt(limit, 10),
+        offset: parseInt(offset, 10),
+        include: [
+          {
+            model: Subcategory,
+            include: [
+              {
+                model: Category,
+              },
+            ],
+          },
+        ],
+      }
+    );
 
     res.status(httpStatus.OK).json({
       success: true,
@@ -31,24 +41,37 @@ export const getProducts = async (req, res, next) => {
 
 export const getProductById = async (req, res, next) => {
   try {
-    const { id } = req.params
-    const product = await Product.findOne( {[Op.or] : [{id}, {slug: id}]}); 
-
-    if(!product) {
-      return res.status(httpStatus.NOT_FOUND).json({
-        success: false,
-        error: "Product not found"
-      });
-    };
-    
-    res.status(httpStatus.OK).json({
-      success: true,
-      product
+    const { id } = req.params;
+    const product = await Product.findOne({
+      where: {
+        [Op.or]: [{ id }, { slug: id }],
+      },
+      include: [
+        {
+          model: Subcategory,
+          include: [
+            {
+              model: Category,
+            },
+          ],
+        },
+      ],
     });
 
-  } catch (error){
+    if (!product) {
+      return res.status(httpStatus.NOT_FOUND).json({
+        success: false,
+        error: "Product not found",
+      });
+    }
+
+    res.status(httpStatus.OK).json({
+      success: true,
+      product,
+    });
+  } catch (error) {
     next(error);
-  };
+  }
 };
 
 // CREATE A NEW PRODUCT
@@ -59,25 +82,24 @@ export const createProduct = async (req, res, next) => {
       success: true,
       product,
     });
-  } catch (error){
-    console.log(error)
-    next(error)
-  };
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
 };
 
 // Update a product by Id
 export const updateProduct = async (req, res, next) => {
   try {
-
     const { id } = req.params;
     const product = await Product.findByPk(id);
 
-    if(!product) {
+    if (!product) {
       return res.status(httpStatus.NOT_FOUND).json({
         success: false,
-        error: "Product not found"
+        error: "Product not found",
       });
-    };
+    }
 
     await Product.update(req.body, {
       where: { id },
@@ -86,27 +108,24 @@ export const updateProduct = async (req, res, next) => {
     const updatedProduct = await Product.findByPk(id);
     res.status(httpStatus.OK).json({
       success: true,
-      updatedProduct
+      updatedProduct,
     });
-
-  } catch (error){
+  } catch (error) {
     next(error);
-  };
+  }
 };
-
 
 // DELETE PRODUCT BY ID
 export const deleteProductById = async (req, res, next) => {
   try {
-    const {id} = req.params;
+    const { id } = req.params;
 
-    await Product.destroy({where: {id}});
+    await Product.destroy({ where: { id } });
     res.status(httpStatus.OK).json({
       success: true,
-      data: {}
+      data: {},
     });
-
-  }catch (error){
-    next(error)
-  };
+  } catch (error) {
+    next(error);
+  }
 };

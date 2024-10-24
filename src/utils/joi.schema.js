@@ -2,52 +2,68 @@ import Joi from "joi";
 
 // Product schema
 export const createProductSchema = Joi.object({
-  name: Joi.string().min(3).max(50).required(),
+  name: Joi.string().min(3).max(350).required(),
   price: Joi.number().min(0).required(),
   stock: Joi.number().min(0).required(),
   imageSrc: Joi.string().uri().required(),
-  imageAlt: Joi.string().min(3).max(350).required(),
+  imageAlt: Joi.string().min(3).max(1000).required(),
   active: Joi.boolean().optional(),
+  colors: Joi.object().required(),
+  sizes: Joi.array().items(Joi.string()).required(),
+  description: Joi.string().min(3).max(1000).required(),
+  highlights: Joi.object().required(),
+  details: Joi.string().min(3).max(1000).optional(),
   subcategoryId: Joi.string().uuid().required(),
 });
 
 export const updateProductSchema = Joi.object({
-  name: Joi.string().min(3).max(50).optional(),
+  name: Joi.string().min(3).max(350).optional(),
   price: Joi.number().min(0).optional(),
   stock: Joi.number().min(0).optional(),
   imageSrc: Joi.string().uri().optional(),
-  imageAlt: Joi.string().min(3).max(350).optional(),
+  imageAlt: Joi.string().min(3).max(1000).optional(),
   active: Joi.boolean().optional(),
+  colors: Joi.object().optional(),
+  sizes: Joi.object().optional(),
+  description: Joi.string().min(3).max(1000).optional(),
+  highlights: Joi.object().optional(),
+  details: Joi.string().min(3).max(1000).optional(),
   subcategoryId: Joi.string().uuid().optional(),
 });
 
 // Category schema
 export const createCategorySchema = Joi.object({
-  name: Joi.string().min(3).max(50).required(),
+  name: Joi.string().min(3).max(350).required(),
+  description: Joi.string().min(3).max(1000).required(),
+  imageSrc: Joi.string().uri().required(),
+  imageAlt: Joi.string().min(3).max(1000).required(),
   active: Joi.boolean().optional(),
 });
 
 export const updateCategorySchema = Joi.object({
-  name: Joi.string().min(3).max(50).optional(),
+  name: Joi.string().min(3).max(350).optional(),
+  description: Joi.string().min(3).max(1000).optional(),
+  imageSrc: Joi.string().uri().optional(),
+  imageAlt: Joi.string().min(3).max(1000).optional(),
   active: Joi.boolean().optional(),
 });
 
 // Subcategory schema
 export const createSubcategorySchema = Joi.object({
-  name: Joi.string().min(3).max(50).required(),
+  name: Joi.string().min(3).max(350).required(),
   categoryId: Joi.string().uuid().required(),
   active: Joi.boolean().optional(),
 });
 
 export const updateSubcategorySchema = Joi.object({
-  name: Joi.string().min(3).max(50).optional(),
+  name: Joi.string().min(3).max(350).optional(),
   categoryId: Joi.string().uuid().optional(),
   active: Joi.boolean().optional(),
 });
 
 // Order schema
 export const createOrderSchema = Joi.object({
-  cartId: Joi.string().required(),
+  cartId: Joi.string().uuid().required(),
   name: Joi.object({
     firstName: Joi.string().required(),
     lastName: Joi.string().required(),

@@ -15,6 +15,10 @@ const CASCADE_CONFIG = {
 
 Category.hasMany(Subcategory, { FOREIGN_CONFIG, foreignKey: "categoryId" });
 
+Subcategory.belongsTo(Category, { FOREIGN_CONFIG, foreignKey: "categoryId" });
+
+Subcategory.hasMany(Product, { FOREIGN_CONFIG, foreignKey: "subcategoryId" });
+
 Product.belongsTo(Subcategory, { FOREIGN_CONFIG, foreignKey: "subcategoryId" });
 
 Product.belongsToMany(Cart, {

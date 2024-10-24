@@ -19,6 +19,18 @@ const Category = sequelize.define(
         len: [3, 50],
       },
     },
+    description: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    imageSrc: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    imageAlt: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
     active: {
       type: DataTypes.BOOLEAN,
       defaultValue: true,
