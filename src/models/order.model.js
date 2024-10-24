@@ -101,19 +101,6 @@ const Order = sequelize.define(
         },
       },
     },
-    items: {
-      type: DataTypes.JSON,
-      allowNull: false,
-      validate: {
-        hasRequiredProperties(value) {
-          if (!value.products || !value.total) {
-            throw new Error(
-              "El JSON debe contener las propiedades products y total"
-            );
-          }
-        },
-      },
-    },
   },
   {
     sequelize,

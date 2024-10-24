@@ -1,5 +1,5 @@
 import sequelize from "../utils/postgresql.config.js";
-import { Product, Category, Subcategory } from "../models/index.js";
+import { Product, Category, Subcategory, Order, Cart } from "../models/index.js";
 import slugify from "slugify"; // Importar el paquete slugify
 
 (async () => {
@@ -7,6 +7,12 @@ import slugify from "slugify"; // Importar el paquete slugify
     // Elimina las tablas y las vuelve a crear
     await sequelize.drop({ cascade: true, force: true });
     await sequelize.sync();
+
+    // Eliminar la tabla de órdenes
+    await Order.drop({ cascade: true, force: true });
+
+    // Crear la tabla de carritos
+    await Cart.sync();
 
     // Insertar categorías con slug generado
     const categories = await Category.bulkCreate([

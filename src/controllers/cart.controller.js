@@ -29,16 +29,16 @@ export const getCartById = async (req, res, next) => {
 
 export const addProductToCart = async (req, res, next) => {
   const { productId, count, email } = req.body;
-  const { id } = req.params;
+  const { id } = req.params || {};
 
   try {
     const [cart, created] = await Cart.findOrCreate({
       where: {
-        [Op.or]: [{ id }, { email: id || email }],
+      [Op.or]: [{ id: id || null }, { email: email }],
       },
       include: [Product],
       defaults: {
-        email,
+      email,
       },
     });
 

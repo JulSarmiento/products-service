@@ -40,10 +40,10 @@ export const createOrder = async (req, res, next) => {
   const { cartId, status, name, email, document, phone, payment, shipping } =
     req.body;
 
+  console.log("req.body", req.body);
+
   try {
     const { cart } = req;
-
-    console.log("Cart in order controller", cart.Products);  
 
     let total = 0;
 
@@ -52,12 +52,27 @@ export const createOrder = async (req, res, next) => {
 
     // Procesa los productos
     const items = cart.Products.map(
-      ({ id: productId, CartItem: { count: quantity }, price, stock }) => {
+      ({
+        id: productId,
+        name,
+        imageSrc,
+        imageAlt,
+        CartItem: { count: quantity },
+        price,
+        stock,
+      }) => {
         // Calcular el total a pagar
-        total + price * quantity;
+        total += price * quantity;
 
         // Actualización de inventario
-        products.push({ id, stock: stock - count });
+        products.push({
+          id: productId,
+          name,
+          imageSrc,
+          imageAlt,
+          price,
+          stock: stock - quantity,
+        });
 
         // Retorno mapeado para orden
         return {
@@ -67,6 +82,7 @@ export const createOrder = async (req, res, next) => {
         };
       }
     );
+    console.log("items", items);
 
     const order = await Order.create({
       status,
@@ -76,18 +92,19 @@ export const createOrder = async (req, res, next) => {
       phone,
       payment,
       shipping,
-      items: {
-        products: items,
-        total,
-      },
-      total: total + shipping.cost,
+      items: items,
+      total: total + (payment.shippingCost || 0),
     });
 
     // Actualiza el inventario de los productos
-    Product.bulkCreate(bulkUpdate, { updateOnDuplicate: ["id"] });
+    await Product.bulkCreate(products, { updateOnDuplicate: ["stock"] });
+
+    console.log("Productos actualizados correctamente");
 
     // Eliminar carrito e items del carrito en cascada
-    await cart.destroy();
+    // await cart.removeProduct(); //No recuerdo si se llama así
+    // await cart.reload();
+    await cart.destroy({ where: { id: cartId } });
 
     console.log(`Eliminado carrito (${cartId}) e items del carrito en cascada`);
 
@@ -107,7 +124,7 @@ export const updateOrder = async (req, res, next) => {
 
     order.set(req.body);
 
-    await jane.save();
+    await order.save();
 
     res.status(httpStatus.OK).json({
       success: true,

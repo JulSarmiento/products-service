@@ -7,24 +7,26 @@ import { Cart, CartItem } from "./cart.model.js";
 
 const FOREIGN_CONFIG = { allowNull: false, type: DataTypes.UUID };
 
-Category.hasMany(Subcategory, { FOREIGN_CONFIG, foreignKey: 'categoryId' });
-
-Product.belongsTo(Subcategory, { FOREIGN_CONFIG, foreignKey: 'subcategoryId' });
-
-Product.belongsToMany(Cart, {
-  ...FOREIGN_CONFIG,
-  through: CartItem,
+const CASCADE_CONFIG = {
   onDelete: "CASCADE",
   onUpdate: "CASCADE",
   hooks: true,
+};
+
+Category.hasMany(Subcategory, { FOREIGN_CONFIG, foreignKey: "categoryId" });
+
+Product.belongsTo(Subcategory, { FOREIGN_CONFIG, foreignKey: "subcategoryId" });
+
+Product.belongsToMany(Cart, {
+  ...FOREIGN_CONFIG,
+  ...CASCADE_CONFIG,
+  through: CartItem,
 });
 
 Cart.belongsToMany(Product, {
   ...FOREIGN_CONFIG,
+  ...CASCADE_CONFIG,
   through: CartItem,
-  onDelete: "CASCADE",
-  onUpdate: "CASCADE",
-  hooks: true,
 });
 
 export { Product, Category, Subcategory, Order, Cart, CartItem };
