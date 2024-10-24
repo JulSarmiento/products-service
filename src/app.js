@@ -1,11 +1,13 @@
 import Express from "express";
 import log from "morgan";
 
-import routes from "./routes/index.js"
+import routes from "./routes/index.js";
 import { errorHandler } from "./middlewares/index.js";
+import cors from "cors";
 
 const app = Express();
-
+app.use(cors());
+app.use(log(process.env.NODE_ENV));
 app.use(log(process.env.NODE_ENV));
 
 app.use(Express.json());
