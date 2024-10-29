@@ -1,24 +1,25 @@
 import express from "express";
+
 import {
   getProducts,
   createProduct,
   getProductById,
+  getProductsByCategory,
   updateProduct,
   deleteProductById
 } from "../controllers/index.js";
+
 import { 
   validatedCreateProduct,
-  validateUpdateProduct 
-  
-} from "../middlewares/index.js";
-import {
-  addvanceSearch
+  validateUpdateProduct,
+  customSearch
 } from "../middlewares/index.js"
 
 const router = express.Router();
 
-router.get("/", [addvanceSearch], getProducts);
+router.get("/", [customSearch(["categoty", "subcategory"])], getProducts);
 router.get("/:id", getProductById);
+router.get("/category/:id", getProductsByCategory);
 router.post("/", [validatedCreateProduct], createProduct);
 router.patch("/:id",[validateUpdateProduct], updateProduct);
 router.delete("/:id", deleteProductById)

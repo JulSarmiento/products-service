@@ -1,10 +1,13 @@
 import { Op, Sequelize } from "sequelize";
 
-export default (req, _res, next) => {
+const DEFAULT_EXCLUDE = ["page", "size", "limit", "offset"];
+
+const addvanceSearch = (excludes = []) => (req, _res, next) => {
   const where = {};
 
   Object.entries(req.query).forEach(([key, value]) => {
-    if (key === "page" || key === "size") return;
+    // Ignora excluyentes
+    if ([...DEFAULT_EXCLUDE, ...excludes].includes(key)) return;
 
     if (key.includes("__lte")) {
       where[key.replace("__lte", "")] = {
@@ -24,7 +27,7 @@ export default (req, _res, next) => {
       };
     } else {
       where[key] = {
-        [Op.iLike]: `%${value}%`
+        [Op.iLike]: `%${value}%`,
       };
     }
   });
@@ -32,3 +35,7 @@ export default (req, _res, next) => {
   req.where = where;
   next();
 };
+
+export default addvanceSearch();
+
+export const customSearch = addvanceSearch;

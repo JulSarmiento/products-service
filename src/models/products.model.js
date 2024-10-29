@@ -81,7 +81,7 @@ const Product = sequelize.define( 'Product', {
       },
       beforeUpdate: (product) => {
         if(product.name) {  
-        product.slug = slugify(product.name, { lower: true });
+          product.slug = slugify(product.name, { lower: true });
         }
       },
     },

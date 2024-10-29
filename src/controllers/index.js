@@ -1,6 +1,7 @@
 import {
   getProducts,
   getProductById,
+  getProductsByCategory,
   createProduct,
   updateProduct,
   deleteProductById,
@@ -37,6 +38,7 @@ import {
 export {
   getProducts,
   getProductById,
+  getProductsByCategory,
   createProduct,
   updateProduct,
   deleteProductById,

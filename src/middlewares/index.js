@@ -1,5 +1,5 @@
 import errorHandler from "./error.handler.js";
-import addvanceSearch from "./addvance.search.js";
+import addvanceSearch, { customSearch } from "./addvance.search.js";
 import validateModel from "./joi.validator.js";
 import {
   createProductSchema,
@@ -32,6 +32,7 @@ const validateUpdateCart = validateModel(updateCartSchema);
 export {
   errorHandler,
   addvanceSearch,
+  customSearch,
   validatedCreateProduct,
   validateUpdateProduct,
   validatedCreateCategory,
@@ -41,7 +42,7 @@ export {
   validatedCreateOrder,
   validateUpdateOrder,
   validatedCreateCart,
-  validateUpdateCart
+  validateUpdateCart,
 };
 
-export { findItem, findCartInBody, findOrder} from './items.js';
+export { findItem, findCartInBody, findOrder } from "./items.js";
