@@ -68,7 +68,7 @@ export const getProductsByCategory = async (req, res, next) => {
     });
 
     const { SubCategories } = category;
-    const allProducts = SubCategories.flatMap(
+    const products = SubCategories.flatMap(
       (subcategory) => subcategory.Products
     );
 
@@ -81,7 +81,7 @@ export const getProductsByCategory = async (req, res, next) => {
 
     res.status(httpStatus.OK).json({
       success: true,
-      allProducts,
+      products,
     });
   } catch (error) {
     next(error);
