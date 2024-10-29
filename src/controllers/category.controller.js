@@ -1,6 +1,6 @@
 import httpStatus from "http-status";
 import { Op } from "sequelize";
-import { Category, Subcategory } from "../models/index.js";
+import { Category, Subcategory, Product } from "../models/index.js";
 
 export const getCategories = async (req, res, next) => {
   try {
@@ -8,10 +8,17 @@ export const getCategories = async (req, res, next) => {
     const offset = (page - 1) * limit;
 
     const { rows, count: totalItems } = await Category.findAndCountAll({
-      include: Subcategory,
       where: req.where,
       limit,
       offset,
+      include: {
+        model: Subcategory,
+        include: [
+          {
+            model: Product,
+          },
+        ],
+      },
     });
 
     res.status(httpStatus.OK).json({
@@ -27,12 +34,14 @@ export const getCategories = async (req, res, next) => {
 };
 
 export const getCategoryById = async (req, res, next) => {
-
   const { id } = req.params;
   try {
-    const category = await Category.findOne( {[Op.or] : [{id}, {slug: id}]}, {
-      include: Subcategory,
-    });
+    const category = await Category.findOne(
+      { [Op.or]: [{ id }, { slug: id }] },
+      {
+        include: Subcategory,
+      }
+    );
 
     if (!category) {
       return res.status(httpStatus.NOT_FOUND).json({

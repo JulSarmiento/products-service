@@ -7,8 +7,7 @@ import cors from "cors";
 
 const app = Express();
 app.use(cors());
-app.use(log(process.env.NODE_ENV));
-app.use(log(process.env.NODE_ENV));
+app.use(log(process.env.NODE_ENV === 'development' ? 'combined' : 'dev'));
 
 app.use(Express.json());
 app.use(Express.urlencoded({extended: true}));

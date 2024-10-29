@@ -7,25 +7,30 @@ export const getProducts = async (req, res, next) => {
   try {
     console.log("req.where:", req.where);
 
-    const { page = 1, limit = 10 } = req.query;
+    const { page = 1, limit = 10, categoryId } = req.query;
     const offset = (page - 1) * limit;
-    const { rows: products, count: totalItems } = await Product.findAndCountAll(
-      {
-        where: req.where || {},
-        limit: parseInt(limit, 10),
-        offset: parseInt(offset, 10),
-        include: [
-          {
-            model: Subcategory,
-            include: [
-              {
-                model: Category,
-              },
-            ],
-          },
-        ],
-      }
-    );
+    const whereClause = {
+      ...req.where,
+      ...(categoryId && {
+        '$Subcategory.categoryId$': categoryId
+      })
+    };
+
+    const { rows: products, count: totalItems } = await Product.findAndCountAll({
+      where: whereClause,
+      limit: parseInt(limit, 10),
+      offset: parseInt(offset, 10),
+      include: [
+        {
+          model: Subcategory,
+          include: [
+            {
+              model: Category,
+            },
+          ],
+        },
+      ],
+    });
 
     res.status(httpStatus.OK).json({
       success: true,
