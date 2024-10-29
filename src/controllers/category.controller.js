@@ -1,5 +1,6 @@
 import httpStatus from "http-status";
 import { Op } from "sequelize";
+import { validate as isUuid } from 'uuid';
 import { Category, Subcategory, Product } from "../models/index.js";
 
 export const getCategories = async (req, res, next) => {
@@ -36,17 +37,26 @@ export const getCategories = async (req, res, next) => {
 export const getCategoryById = async (req, res, next) => {
   const { id } = req.params;
   try {
-    const category = await Category.findOne(
-      { [Op.or]: [{ id }, { slug: id }] },
-      {
-        include: Subcategory,
-      }
-    );
+    const whereClause = isUuid(id)
+      ? { id: { [Op.eq]: id } }
+      : { slug: { [Op.eq]: id } };
+
+    const category = await Category.findOne({
+      where: whereClause,
+      include: {
+        model: Subcategory,
+        include: [
+          {
+            model: Product,
+          },
+        ],
+      },
+    });
 
     if (!category) {
       return res.status(httpStatus.NOT_FOUND).json({
         success: false,
-        message: "Category not found",
+        message: 'Category not found',
       });
     }
 
