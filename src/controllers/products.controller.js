@@ -8,7 +8,10 @@ export const getProducts = async (req, res, next) => {
   try {
     console.log("req.where:", req.where);
 
-    const { page = 1, limit = 10, category: slug } = req.query;
+    const { page = 1, limit = 10, category, subcategory } = req.query;
+
+    console.log("getProducts", req.query);
+
     const offset = (page - 1) * limit;
     const { where } = req;
 
@@ -19,10 +22,11 @@ export const getProducts = async (req, res, next) => {
         include: [
           {
             model: Subcategory,
+            ...(subcategory ? { where: { slug: subcategory } } : {}),
             include: [
               {
                 model: Category,
-                ...(slug ? { where: { slug } } : {}),
+                ...(category ? { where: { slug: category } } : {}),
               }, 
             ],
           },
@@ -87,20 +91,20 @@ export const getProductsByCategory = async (req, res, next) => {
 export const getProductById = async (req, res, next) => {
   try {
     const { id } = req.params;
+    const whereClause = isUuid(id)
+      ? { id: { [Op.eq]: id } }
+      : { slug: { [Op.eq]: id } };
+
     const product = await Product.findOne({
-      where: {
-        [Op.or]: [{ id }, { slug: id }],
+      where: whereClause,
+      include: {
+        model: Subcategory,
+        include: [
+          {
+            model: Category,
+          },
+        ],
       },
-      include: [
-        {
-          model: Subcategory,
-          include: [
-            {
-              model: Category,
-            },
-          ],
-        },
-      ],
     });
 
     if (!product) {
