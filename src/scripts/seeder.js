@@ -73,6 +73,7 @@ import {
           authorName: "Darth Vader",
           authorRole: "CEO de Vader Store",
         },
+        slug: "tech-haven",
       },
       {
         companyName: "Mazu Store",
@@ -117,6 +118,7 @@ import {
           authorName: "Judith Black",
           authorRole: "CEO de Workcation",
         },
+        slug: "mazu-store",
       },
     ]);
 

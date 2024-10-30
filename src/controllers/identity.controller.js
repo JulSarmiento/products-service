@@ -31,7 +31,7 @@ export const getIdentityById = async (req, res, next) => {
   try {
     const whereClause = isUuid(id)
       ? { id: { [Op.eq]: id } }
-      : { companyName: { [Op.eq]: id } };
+      : { slug: { [Op.eq]: id } };
 
     const identity = await Identity.findOne({
       where: whereClause,

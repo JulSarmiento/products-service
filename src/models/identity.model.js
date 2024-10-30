@@ -125,8 +125,8 @@ const Identity = sequelize.define(
     timestamps: true,
     hooks: {
       beforeValidate: (identity) => {
-        if (identity.name) {
-          identity.slug = slugify(identity.name).toLowerCase();
+        if (identity.companyName) {
+          identity.slug = slugify(identity.companyName).toLowerCase();
         }
       },
     },
