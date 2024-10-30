@@ -33,7 +33,7 @@ import {
           firstLink: "Productos",
           secondLink: "Novedades",
           thirdLink: "Sobre Nosotros",
-          seeAll: "Explorar todo",
+          seeAll: "Ver todo",
           seeAllDescription:
             "Descubre nuestra gama completa de productos innovadores",
           logoAlt: "Logo de Tech Haven",
@@ -45,7 +45,7 @@ import {
           description:
             "Sumérgete en nuestro catálogo de productos que transformarán la forma en que vives y trabajas, con las últimas innovaciones tecnológicas.",
           buttonText: "Ver Productos",
-          slug: "explorar-todo",
+          slug: "ver-todo",
           imageSrc:
             "https://tailwindui.com/plus/img/ecommerce-images/home-page-03-hero-image-tile-01.jpg",
           imageAlt: "Imagen de productos tecnológicos",
@@ -58,7 +58,7 @@ import {
           description:
             "Acompáñanos en San Francisco del 15 al 17 de septiembre para descubrir el futuro de la tecnología.",
           buttonText: "Regístrate aquí",
-          slug: "tech-expo",
+          slug: "ver-todo",
           imageSrc:
             "https://tailwindui.com/plus/img/ecommerce-images/home-page-02-sale-full-width.jpg",
           imageAlt: "Banner Tech Expo 2023",
