@@ -1,6 +1,4 @@
 import express from 'express';
-import { addvanceSearch } from '../middlewares/index.js';
-
 import {
   getCategories,
   getCategoryById,
@@ -10,6 +8,7 @@ import {
 } from '../controllers/index.js';
 
 import {
+  advanceSearch,
   validatedCreateCategory,
   validateUpdateCategory,
 } from '../middlewares/index.js';
@@ -17,7 +16,7 @@ import {
 
 const router = express.Router();
 
-router.get('/', [addvanceSearch], getCategories);
+router.get('/', [advanceSearch], getCategories);
 router.get('/:id', getCategoryById);
 router.post('/', [validatedCreateCategory], createCategory);
 router.put('/:id', [validateUpdateCategory], updateCategory);

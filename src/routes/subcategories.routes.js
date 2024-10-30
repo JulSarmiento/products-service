@@ -1,5 +1,5 @@
 import express from 'express';
-import { addvanceSearch } from '../middlewares/index.js';
+import { advanceSearch } from '../middlewares/index.js';
 
 import {
   getSubcategories,
@@ -11,7 +11,7 @@ import {
 
 const router = express.Router();
 
-router.get('/', [addvanceSearch], getSubcategories);
+router.get('/', [advanceSearch], getSubcategories);
 router.get('/:id', getSubcategoryById);
 router.post('/', createSubcategory);
 router.put('/:id', updateSubcategory);

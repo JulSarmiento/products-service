@@ -1,5 +1,5 @@
 import express from "express";
-import { addvanceSearch, findOrder, findCartInBody } from "../middlewares/index.js";
+import { advanceSearch, findOrder, findCartInBody } from "../middlewares/index.js";
 import {
   getOrders,
   getOrderById,
@@ -9,7 +9,7 @@ import {
 
 const router = express.Router();
 
-router.get("/", [addvanceSearch], getOrders);
+router.get("/", [advanceSearch], getOrders);
 router.get("/:id", [findOrder], getOrderById);
 router.post("/", [findCartInBody], createOrder);
 router.put("/:id", [findOrder], updateOrder);

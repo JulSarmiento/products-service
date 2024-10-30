@@ -6,6 +6,7 @@ import categoriesRouter from "./category.routes.js";
 import subCategoriesRouter from "./subcategories.routes.js";
 import cartRouter from "./cat.routes.js";
 import orderRouter from "./order.routes.js"
+import identityRouter from "./identity.routes.js";
 
 const { POSTGRESQL_URL, POSTGRESQL_SSL_CA, ENVIRONMENT } = envVariables;
 const router = express.Router();
@@ -24,7 +25,8 @@ router.get("/health", (_req, res) => {
   .use("/categories", categoriesRouter)
   .use("/subcategories", subCategoriesRouter)
   .use("/cart", cartRouter)
-  .use("/orders", orderRouter);
+  .use("/orders", orderRouter)
+  .use("/identity", identityRouter);
 
 
 export default router;

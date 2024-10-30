@@ -35,6 +35,14 @@ import {
   addProductToCart
 } from "./cart.controller.js";
 
+import {
+  getIdentities,
+  getIdentityById,
+  createIdentity,
+  updateIdentity,
+  deleteIdentity,
+} from "./identity.controller.js";
+
 export {
   getProducts,
   getProductById,
@@ -58,4 +66,9 @@ export {
   updateOrder,
   getCartById,
   addProductToCart,
+  getIdentities,
+  getIdentityById,
+  createIdentity,
+  updateIdentity,
+  deleteIdentity,
 };

@@ -129,3 +129,83 @@ export const updateCartSchema = Joi.object({
   count: Joi.number().min(0).optional(),
   productId: Joi.string().uuid().required(),
 });
+
+export const createIdentitySchema = Joi.object({
+  companyName: Joi.string().required(),
+  header: Joi.object({
+    companyName: Joi.string().required(),
+    firstLink: Joi.string().required(),
+    secondLink: Joi.string().required(),
+    thirdLink: Joi.string().required(),
+    seeAll: Joi.string().required(),
+    seeAllDescription: Joi.string().required(),
+    logoAlt: Joi.string().required(),
+    logoSrc: Joi.string().required(),
+  }).required(),
+  hero: Joi.object({
+    title: Joi.string().required(),
+    description: Joi.string().required(),
+    buttonText: Joi.string().required(),
+    slug: Joi.string().required(),
+    imageSrc: Joi.string().required(),
+    imageAlt: Joi.string().required(),
+  }).required(),
+  categories: Joi.object({
+    title: Joi.string().required(),
+  }).required(),
+  banner: Joi.object({
+    title: Joi.string().required(),
+    description: Joi.string().required(),
+    buttonText: Joi.string().required(),
+    slug: Joi.string().required(),
+    imageSrc: Joi.string().required(),
+    imageAlt: Joi.string().required(),
+  }).required(),
+  testimonial: Joi.object({
+    logoSrc: Joi.string().required(),
+    quote: Joi.string().required(),
+    authorImageSrc: Joi.string().required(),
+    authorName: Joi.string().required(),
+    authorRole: Joi.string().required(),
+  }).required(),
+});
+
+export const updateIdentitySchema = Joi.object({
+  companyName: Joi.string().optional(),
+  header: Joi.object({
+    companyName: Joi.string().optional(),
+    firstLink: Joi.string().optional(),
+    secondLink: Joi.string().optional(),
+    thirdLink: Joi.string().optional(),
+    seeAll: Joi.string().optional(),
+    seeAllDescription: Joi.string().optional(),
+    logoAlt: Joi.string().optional(),
+    logoSrc: Joi.string().optional(),
+  }).optional(),
+  hero: Joi.object({
+    title: Joi.string().optional(),
+    description: Joi.string().optional(),
+    buttonText: Joi.string().optional(),
+    slug: Joi.string().optional(),
+    imageSrc: Joi.string().optional(),
+    imageAlt: Joi.string().optional(),
+  }).optional(),
+  categories: Joi.object({
+    title: Joi.string().optional(),
+  }).optional(),
+  banner: Joi.object({
+    title: Joi.string().optional(),
+    description: Joi.string().optional(),
+    buttonText: Joi.string().optional(),
+    slug: Joi.string().optional(),
+    imageSrc: Joi.string().optional(),
+    imageAlt: Joi.string().optional(),
+  }).optional(),
+  testimonial: Joi.object({
+    logoSrc: Joi.string().optional(),
+    quote: Joi.string().optional(),
+    authorImageSrc: Joi.string().optional(),
+    authorName: Joi.string().optional(),
+    authorRole: Joi.string().optional(),
+  }).optional(),
+});
