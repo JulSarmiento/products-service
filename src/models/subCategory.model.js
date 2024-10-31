@@ -17,6 +17,10 @@ const SubCategory = sequelize.define('SubCategory', {
       len: [3, 50],
     },
   },
+  store: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
   active: {
     type: DataTypes.BOOLEAN,
     defaultValue: true,

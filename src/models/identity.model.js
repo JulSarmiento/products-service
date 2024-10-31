@@ -111,6 +111,29 @@ const Identity = sequelize.define(
         },
       },
     },
+    colors: {
+      type: DataTypes.JSON,
+      allowNull: false,
+      validate: {
+        hasRequiredProperties(value) {
+          if (
+            !value.primary ||
+            !value.secondary ||
+            !value.tertiary ||
+            !value.background ||
+            !value.accent ||
+            !value.accentHover ||
+            !value.transparent ||
+            !value.transparentPrimary ||
+            !value.transparentSecondary
+          ) {
+            throw new Error(
+              "The JSON must contain the properties primary, secondary, tertiary, quaternary"
+            );
+          }
+        },
+      },   
+    },
     active: {
       type: DataTypes.BOOLEAN,
       defaultValue: true,
