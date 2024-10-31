@@ -36,14 +36,14 @@ import {
           seeAll: "Ver Todo",
           seeAllDescription: "Descubre nuestra colección completa de moda contemporánea",
           logoAlt: "Logo de Moda Urbana",
-          logoSrc: "gs://plantilla-ecommerce-3852b.appspot.com/tienda1/logo-narc.svg"
+          logoSrc: "https://firebasestorage.googleapis.com/v0/b/plantilla-ecommerce-3852b.appspot.com/o/tienda1%2Flogo-narc.svg?alt=media&token=a03d0ed5-2bde-4dab-9979-80486d510959"
         },
         hero: {
           title: "Moda moderna para cada ocasión",
           description: "Explora nuestra colección de ropa que define estilo y comodidad para el día a día.",
           buttonText: "Ver Colección",
           slug: "ver-todo",
-          imageSrc: "gs://plantilla-ecommerce-3852b.appspot.com/tienda1/hero-img.svg",
+          imageSrc: "https://firebasestorage.googleapis.com/v0/b/plantilla-ecommerce-3852b.appspot.com/o/tienda1%2Fhero-img.svg?alt=media&token=f5464867-ad4b-4c37-aedd-b4a19fd52f10",
           imageAlt: "Imagen de personas con ropa de moda"
         },
         categories: {
@@ -87,14 +87,14 @@ import {
           seeAll: "Ver Todo",
           seeAllDescription: "Descubre nuestra gama completa de productos para consentir a tus mascotas",
           logoAlt: "Logo de Pet Haven",
-          logoSrc: "gs://plantilla-ecommerce-3852b.appspot.com/tienda2/logo-mazu.svg"
+          logoSrc: "https://firebasestorage.googleapis.com/v0/b/plantilla-ecommerce-3852b.appspot.com/o/tienda2%2Flogo-mazu.svg?alt=media&token=660ba713-8e29-4c81-bb1e-92ab591e117b"
         },
         hero: {
           title: "Todo lo que necesitas para el cuidado de tu mascota",
           description: "Explora nuestra colección de productos especialmente diseñados para mantener felices y saludables a tus mascotas.",
           buttonText: "Ver Productos",
           slug: "ver-todo",
-          imageSrc: "gs://plantilla-ecommerce-3852b.appspot.com/tienda2/mazu-hero.svg",
+          imageSrc: "https://firebasestorage.googleapis.com/v0/b/plantilla-ecommerce-3852b.appspot.com/o/tienda2%2Fmazu-hero.svg?alt=media&token=3f86215d-c66d-4cf7-8b6f-57521095b0ab",
           imageAlt: "Imagen de productos para mascotas"
         },
         categories: {
