@@ -9,7 +9,7 @@ import {
 
 const router = express.Router();
 
-router.get("/", [advanceSearch], getOrders);
+router.get("/", [advanceSearch()], getOrders);
 router.get("/:id", [findOrder], getOrderById);
 router.post("/", [findCartInBody], createOrder);
 router.put("/:id", [findOrder], updateOrder);

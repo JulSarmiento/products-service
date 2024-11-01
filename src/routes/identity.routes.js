@@ -14,7 +14,7 @@ import {
 
 const router = express.Router();
 
-router.get("/",[advanceSearch], getIdentities);
+router.get("/",[advanceSearch()], getIdentities);
 router.get("/:id", getIdentityById);
 router.post("/", [validatedCreateIdentity], createIdentity);
 router.patch("/:id", [validateUpdateIdentity], updateIdentity);

@@ -16,7 +16,7 @@ import {
 
 const router = express.Router();
 
-router.get('/', [advanceSearch], getCategories);
+router.get('/', [advanceSearch(["subcategory"])], getCategories);
 router.get('/:id', getCategoryById);
 router.post('/', [validatedCreateCategory], createCategory);
 router.put('/:id', [validateUpdateCategory], updateCategory);
