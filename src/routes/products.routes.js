@@ -12,12 +12,12 @@ import {
 import { 
   validatedCreateProduct,
   validateUpdateProduct,
-  customSearch
+  advanceSearch,
 } from "../middlewares/index.js"
 
 const router = express.Router();
 
-router.get("/", [customSearch(["categoty", "subcategory"])], getProducts);
+router.get("/", [advanceSearch(["category", "subcategory"])], getProducts);
 router.get("/:id", getProductById);
 router.get("/category/:id", getProductsByCategory);
 router.post("/", [validatedCreateProduct], createProduct);

@@ -1,5 +1,5 @@
 import errorHandler from "./error.handler.js";
-import advanceSearch, { customSearch } from "./addvance.search.js";
+import advanceSearch from "./addvance.search.js";
 import validateModel from "./joi.validator.js";
 import {
   createProductSchema,
@@ -37,7 +37,6 @@ const validateUpdateIdentity = validateModel(updateIdentitySchema);
 export {
   errorHandler,
   advanceSearch,
-  customSearch,
   validatedCreateProduct,
   validateUpdateProduct,
   validatedCreateCategory,

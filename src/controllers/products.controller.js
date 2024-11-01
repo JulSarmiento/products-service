@@ -15,23 +15,30 @@ export const getProducts = async (req, res, next) => {
     const offset = (page - 1) * limit;
     const { where } = req;
 
-    const { rows: products, count: totalItems } = await Product.findAndCountAll({
-        where,
-        limit,
-        offset,
-        include: [
-          {
-            model: Subcategory,
-            ...(subcategory ? { where: { slug: subcategory } } : {}),
-            include: [
-              {
-                model: Category,
-                ...(category ? { where: { slug: category } } : {}),
-              }, 
-            ],
-          },
-        ],
-    });
+    const options = {
+      where,
+      limit,
+      offset,
+      include: [
+        {
+          model: Subcategory,
+          required: true,
+          where: subcategory && { slug: subcategory },
+          include: [
+            {
+              model: Category,
+              required: true,
+              where: category && { slug: category },
+            },
+          ],
+        },
+      ],
+    };
+
+    console.log("options:", JSON.stringify(options, null, 2));
+    const { rows: products, count: totalItems } = await Product.findAndCountAll(
+      options
+    );
 
     res.status(httpStatus.OK).json({
       success: true,
