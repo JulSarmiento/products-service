@@ -12,7 +12,7 @@ app.use(log(process.env.NODE_ENV === 'development' ? 'combined' : 'dev'));
 app.use(Express.json());
 app.use(Express.urlencoded({extended: true}));
 
-app.use(validateApiKey);
+// app.use(validateApiKey);
 
 app.use(routes);
 
