@@ -244,26 +244,26 @@ import {
         },
         {
           name: "Collares de Cuero",
-          store: "pet-haven",
+          store: "mazu-store",
           slug: slugify("Collares de Cuero", { lower: true }),
           categoryId: collarsCategoryId,
         },
         {
           name: "Collares de Nylon",
-          store: "pet-haven",
+          store: "mazu-store",
           slug: slugify("Collares de Nylon", { lower: true }),
           categoryId: collarsCategoryId,
         },      
         // Subcategorías para la categoría "Placas de Identificación"
         {
           name: "Placas de Acero Inoxidable",
-          store: "pet-haven",
+          store: "mazu-store",
           slug: slugify("Placas de Acero Inoxidable", { lower: true }),
           categoryId: idTagsCategoryId,
         },
         {
           name: "Placas de Aluminio",
-          store: "pet-haven",
+          store: "mazu-store",
           slug: slugify("Placas de Aluminio", { lower: true }),
           categoryId: idTagsCategoryId,
         }
