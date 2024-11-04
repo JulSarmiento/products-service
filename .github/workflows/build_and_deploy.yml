@@ -66,7 +66,8 @@ jobs:
             --platform managed \
             --region us-central1 \
             --allow-unauthenticated \
-            --set-secrets=/certificado/ca.crt=projects/605999637992/secrets/SSL_CA_NARC:latest,POSTGRESQL_URL=projects/605999637992/secrets/POSTGRESQL_URL
+            --set-env-vars='POSTGRESQL_SSL_CA=/certificado/ca.crt' \
+            --set-secrets=POSTGRESQL_URL=POSTGRES_URL_MAZU:latest,/certificado/ca.crt=SSL_CA_MAZU:latest
 
   deploy-mazu:
     runs-on: ubuntu-latest
@@ -86,7 +87,8 @@ jobs:
             --platform managed \
             --region us-central1 \
             --allow-unauthenticated \
-            --set-secrets=/certificado/ca.crt=projects/605999637992/secrets/POSTGRESQL_SSL_CA:latest,POSTGRESQL_URL_MAZU=projects/605999637992/secrets/POSTGRESQL_URL
+            --set-env-vars='POSTGRESQL_SSL_CA=/certificado/ca.crt' \
+            --set-secrets=POSTGRESQL_URL=POSTGRES_URL:latest,/certificado/ca.crt=SSL_CA_NARC:latest
 
 
 
