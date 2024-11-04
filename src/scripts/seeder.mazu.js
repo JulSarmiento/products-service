@@ -33,20 +33,16 @@ import {
           secondLink: "Novedades",
           thirdLink: "Sobre Nosotros",
           seeAll: "Ver Todo",
-          seeAllDescription:
-            "Descubre nuestra gama completa de productos para consentir a tus mascotas",
+          seeAllDescription: "Descubre nuestra gama completa de productos para consentir a tus mascotas",
           logoAlt: "Logo de Pet Haven",
-          logoSrc:
-            "https://firebasestorage.googleapis.com/v0/b/plantilla-ecommerce-3852b.appspot.com/o/tienda2%2Flogo-mazu.svg?alt=media&token=660ba713-8e29-4c81-bb1e-92ab591e117b",
+          logoSrc: "https://firebasestorage.googleapis.com/v0/b/plantilla-ecommerce-3852b.appspot.com/o/tienda2%2Flogo-mazu.svg?alt=media&token=660ba713-8e29-4c81-bb1e-92ab591e117b",
         },
         hero: {
           title: "Todo lo que necesitas para el cuidado de tu mascota",
-          description:
-            "Explora nuestra colección de productos especialmente diseñados para mantener felices y saludables a tus mascotas.",
+          description: "Explora nuestra colección de productos especialmente diseñados para mantener felices y saludables a tus mascotas.",
           buttonText: "Ver Productos",
           slug: "ver-todo",
-          imageSrc:
-            "https://firebasestorage.googleapis.com/v0/b/plantilla-ecommerce-3852b.appspot.com/o/tienda2%2Fmazu-hero.svg?alt=media&token=3f86215d-c66d-4cf7-8b6f-57521095b0ab",
+          imageSrc: "https://firebasestorage.googleapis.com/v0/b/plantilla-ecommerce-3852b.appspot.com/o/tienda2%2Fmazu-hero.svg?alt=media&token=3f86215d-c66d-4cf7-8b6f-57521095b0ab",
           imageAlt: "Imagen de productos para mascotas",
         },
         categories: {
@@ -87,7 +83,7 @@ import {
       },
     );
 
-    console.table(identity.map((identity) => identity.get({ plain: true }))); // Mostrar identidades en formato tabla
+    console.table(identity); // Mostrar identidades en formato tabla
 
     // Insertar categorías con slug generado
     const categories = await Category.bulkCreate(

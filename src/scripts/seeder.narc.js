@@ -29,7 +29,6 @@ import {
       {
         companyName: "Narc Ecommerce",
         header: {
-          companyName: "Narc Ecommerce",
           firstLink: "Colecciones",
           secondLink: "Novedades",
           thirdLink: "Nosotros",
@@ -78,7 +77,7 @@ import {
         slug: "narc-ecommerce"
       });
 
-    console.table(identity.map((identity) => identity.get({ plain: true }))); // Mostrar identidades en formato tabla
+    console.table(identity); // Mostrar identidades en formato tabla
 
     // Insertar categorías con slug generado
     const categories = await Category.bulkCreate(

@@ -10,8 +10,8 @@
     "start:narc": "node  --watch --env-file=.env.narc server.js",
     "start:mazu": "node  --watch --env-file=.env.mazu server.js",
     "start:nodemon": "nodemon server.js",
-    "seeder-narc": "node --env-file=.env src/scripts/seeder.narc.js",
-    "seeder-mazu": "node --env-file=.env src/scripts/seeder.mazu.js"
+    "seeder-narc": "node --env-file=.env.narc src/scripts/seeder.narc.js",
+    "seeder-mazu": "node --env-file=.env.mazu src/scripts/seeder.mazu.js"
   },
   "keywords": [],
   "author": "",

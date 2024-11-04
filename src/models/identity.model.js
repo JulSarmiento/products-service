@@ -25,7 +25,6 @@ const Identity = sequelize.define(
       validate: {
         hasRequiredProperties(value) {
           if (
-            !value.companyName ||
             !value.firstLink ||
             !value.secondLink ||
             !value.thirdLink ||

@@ -133,7 +133,6 @@ export const updateCartSchema = Joi.object({
 export const createIdentitySchema = Joi.object({
   companyName: Joi.string().required(),
   header: Joi.object({
-    companyName: Joi.string().required(),
     firstLink: Joi.string().required(),
     secondLink: Joi.string().required(),
     thirdLink: Joi.string().required(),
@@ -174,7 +173,6 @@ export const createIdentitySchema = Joi.object({
 export const updateIdentitySchema = Joi.object({
   companyName: Joi.string().optional(),
   header: Joi.object({
-    companyName: Joi.string().optional(),
     firstLink: Joi.string().optional(),
     secondLink: Joi.string().optional(),
     thirdLink: Joi.string().optional(),
