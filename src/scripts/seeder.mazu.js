@@ -69,15 +69,16 @@ import {
           authorRole: "Fundador de Pet Haven",
         },
         colors: {
-          primary: "#34495e", // Un tono oscuro de gris azulado
-          secondary: "#1abc9c", // Un tono verde brillante
-          tertiary: "#bdc3c7", // Un tono claro de gris
-          background: "#ecf0f1", // Un tono muy claro de gris, casi blanco
-          accent: "#f39c12", // Un tono naranja como color de acento
-          accentHover: "#e67e22", // Un tono más oscuro de naranja al hacer hover
+          primary: "#111827", // Color principal (un tono oscuro de gris)
+          secondary: "#6b7280", // Color secundario (un tono medio de gris)
+          tertiary: "#9ca3af", // Color terciario (un tono claro de gris)
+          background: "#f9fafb", // Color de fondo (un tono muy claro de gris, casi blanco)
+          accent: "#4338ca", // Color de acento (un tono de azul)
+          accentHover: "#8780d9", // Color de acento al hacer hover (un tono más oscuro de azul)
           transparent: "transparent", // Color transparente
-          transparentPrimary: "rgba(52, 152, 219, 0.1)", // Color primario transparente
-          transparentSecondary: "rgba(26, 188, 156, 0.1)", // Color secundario transparente
+          transparentPrimary: "rgba(79, 70, 229, 0.1)", // Color primario transparente gris
+          transparentSecondary: "rgba(187, 192, 201, 0.1)", // Color secundario transparente azul
+        
         },
         slug: "mazu-store",
       },
@@ -202,37 +203,6 @@ import {
           ]),
           details:
             "Este collar azul es ideal para cualquier actividad, ya sea en casa o al aire libre.",
-        },
-        {
-          name: "Collar de Cuero Negro Tachuelas",
-          slug: slugify("Collar de Cuero Negro Tachuelas", { lower: true }),
-          price: 28,
-          imageSrc:
-            "https://firebasestorage.googleapis.com/v0/b/plantilla-ecommerce-3852b.appspot.com/o/tienda2%2Fcollar-2.svg?alt=media&token=dd82ec1f-d9cc-4657-add0-e671b79b3fed",
-          imageAlt: "Collar de cuero rojo para mascotas.",
-          stock: 10,
-          subcategoryId: leatherCollarsSubcategoryId,
-          colors: JSON.stringify([
-            {
-              name: "Rojo",
-              class: "bg-red-600",
-              selectedClass: "ring-gray-900",
-            },
-          ]),
-          sizes: JSON.stringify([
-            { name: "Pequeño", inStock: true },
-            { name: "Mediano", inStock: true },
-            { name: "Grande", inStock: true },
-          ]),
-          description:
-            "Un collar de cuero rojo vibrante que destaca la personalidad de tu mascota.",
-          highlights: JSON.stringify([
-            "Cuero de alta calidad",
-            "Estilo elegante",
-            "Ajustable para un ajuste perfecto",
-          ]),
-          details:
-            "Este collar rojo es perfecto para paseos y ocasiones especiales.",
         },
         {
           name: "Collar de Cuero Rosa con Tachuelas",

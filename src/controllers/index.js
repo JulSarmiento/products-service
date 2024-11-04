@@ -36,11 +36,7 @@ import {
 } from "./cart.controller.js";
 
 import {
-  getIdentities,
-  getIdentityById,
-  createIdentity,
-  updateIdentity,
-  deleteIdentity,
+  getIdentity
 } from "./identity.controller.js";
 
 export {
@@ -66,9 +62,5 @@ export {
   updateOrder,
   getCartById,
   addProductToCart,
-  getIdentities,
-  getIdentityById,
-  createIdentity,
-  updateIdentity,
-  deleteIdentity,
+  getIdentity,
 };

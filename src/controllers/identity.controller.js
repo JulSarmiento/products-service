@@ -3,24 +3,11 @@ import { Op } from "sequelize";
 import { validate as isUuid } from 'uuid';
 import { Identity } from "../models/index.js";
 
-export const getIdentities = async (req, res, next) => {
+export const getIdentity = async (req, res, next) => {
   try {
-    const { page = 1, limit = 10 } = req.query;
-    const offset = (page - 1) * limit;
+    const identity = await Identity.findOne();
 
-    const { rows, count: totalItems } = await Identity.findAndCountAll({
-      where: req.where,
-      limit,
-      offset,
-    });
-
-    res.status(httpStatus.OK).json({
-      success: true,
-      rows,
-      totalItems,
-      totalPages: Math.ceil(totalItems / limit),
-      currentPage: parseInt(page, 10),
-    });
+    res.status(httpStatus.OK).json(identity);
   } catch (error) {
     next(error);
   }
@@ -44,10 +31,7 @@ export const getIdentityById = async (req, res, next) => {
       });
     }
 
-    res.status(httpStatus.OK).json({
-      success: true,
-      identity,
-    });
+    res.status(httpStatus.OK).json(identity);
   } catch (error) {
     next(error);
   }
@@ -55,7 +39,7 @@ export const getIdentityById = async (req, res, next) => {
 
 export const createIdentity = async (req, res, next) => {
   try {
-    const identity = await Identity.create(req.body);
+    const identity = await Identity.create(req.body);   
 
     res.status(httpStatus.CREATED).json({
       success: true,
