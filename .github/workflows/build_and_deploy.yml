@@ -67,7 +67,7 @@ jobs:
             --set-secrets=POSTGRESQL_URL=POSTGRESQL_URL:latest,/certificado/ca.crt=SSL_CA_NARC:latest
 
   deploy-mazu:
-    name: 🚚🌐🚀
+    name: 🚚🌐🚀 MAZU Deploy
     runs-on: ubuntu-latest
     needs: build
     
