@@ -19,10 +19,6 @@ const Category = sequelize.define(
         len: [3, 50],
       },
     },
-    store:{
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
     description: {
       type: DataTypes.STRING,
       allowNull: true,

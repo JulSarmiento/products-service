@@ -85,7 +85,6 @@ import {
       [
         {
           name: "Mujer",
-          store: "narc-ecommerce",
           slug: slugify("Mujer", { lower: true }),
           description: "Última moda para mujeres",
           imageSrc: "https://firebasestorage.googleapis.com/v0/b/plantilla-ecommerce-3852b.appspot.com/o/tienda1%2Fcategoria-mujer.svg?alt=media&token=d4ec125a-8a91-4071-9ab8-c12b5cb5271c",
@@ -94,7 +93,6 @@ import {
         },
         {
           name: "Hombre",
-          store: "narc-ecommerce",
           slug: slugify("Hombre", { lower: true }),
           description: "Última moda para hombres",
           imageSrc: "https://firebasestorage.googleapis.com/v0/b/plantilla-ecommerce-3852b.appspot.com/o/tienda1%2Fcategoria-hombre.svg?alt=media&token=8cde6e59-08ff-4769-b46a-c82f48d31235",
@@ -103,7 +101,6 @@ import {
         },
         {
           name: "Accesorios",
-          store: "narc-ecommerce",
           slug: slugify("Accesorios", { lower: true }),
           description: "Accesorios de moda",
           imageSrc: "https://firebasestorage.googleapis.com/v0/b/plantilla-ecommerce-3852b.appspot.com/o/tienda1%2Fcategoria-accesorios.svg?alt=media&token=a79ef6d7-80b6-4310-a4fb-e4c0f2bd9392",
@@ -131,37 +128,31 @@ import {
       [
         {
           name: "Camisetas",
-          store: "narc-ecommerce",
           slug: slugify("Camisetas", { lower: true }),
           categoryId: hombreCategoryId,
         },
         {
           name: "Chaquetas",
-          store: "narc-ecommerce",
           slug: slugify("Chaquetas", { lower: true }),
           categoryId: hombreCategoryId,
         },
         {
           name: "Termos",
-          store: "narc-ecommerce",
           slug: slugify("Termos", { lower: true }),
           categoryId: accesoriosCategoryId,
         },
         {
           name: "Agendas",
-          store: "narc-ecommerce",
           slug: slugify("Agendas", { lower: true }),
           categoryId: accesoriosCategoryId,
         },
         {
           name: "Blusas",
-          store: "narc-ecommerce",
           slug: slugify("Blusas", { lower: true }),
           categoryId: mujerCategoryId,
         },
         {
           name: "Vestidos",
-          store: "narc-ecommerce",
           slug: slugify("Vestidos", { lower: true }),
           categoryId: mujerCategoryId,
         }
@@ -191,7 +182,6 @@ import {
       [
         {
           name: "Blusa Básica Palo de Rosa",
-          store: "narc-ecommerce",
           slug: slugify("Blusa Básica Palo de Rosa", { lower: true }),
           price: 20,
           imageSrc: "https://firebasestorage.googleapis.com/v0/b/plantilla-ecommerce-3852b.appspot.com/o/tienda1%2Fblusa-basica-1.svg?alt=media&token=652796f7-d3e0-42bb-87dd-5f31ae9b7704",
@@ -236,7 +226,6 @@ import {
         },
         {
           name: "Camiseta Azul",
-          store: "narc-ecommerce",
           slug: slugify("Camiseta Azul", { lower: true }),
           price: 35,
           imageSrc: "https://firebasestorage.googleapis.com/v0/b/plantilla-ecommerce-3852b.appspot.com/o/tienda1%2Fcamiseta-basica-1.svg?alt=media&token=7183cb4b-b680-488b-be82-6b6afd00b0d8",
@@ -273,7 +262,6 @@ import {
         },
         {
           name: "Camiseta Básica Gris",
-          store: "narc-ecommerce",
           slug: slugify("Camiseta Básica Gris", { lower: true }),
           price: 89,
           imageSrc: "https://firebasestorage.googleapis.com/v0/b/plantilla-ecommerce-3852b.appspot.com/o/tienda1%2Fcamiseta-basica-2.svg?alt=media&token=d7bc1d3f-3ce2-444b-acfd-481693a1488a",
@@ -309,7 +297,6 @@ import {
         },
         {
           name: "Blusa Básica Verde Oliva",
-          store: "narc-ecommerce",
           slug: slugify("Blusa Básica Verde Oliva", { lower: true }),
           price: 120,
           imageSrc: "https://firebasestorage.googleapis.com/v0/b/plantilla-ecommerce-3852b.appspot.com/o/tienda1%2Fblusa-basica-2.svg?alt=media&token=c2282047-26f0-41ee-bfa6-77f7d5632dea",
@@ -346,7 +333,6 @@ import {
         },
         {
           name: "Blusa Básicas Gris",
-          store: "narc-ecommerce",
           slug: slugify("Blusa Básicas Gris", { lower: true }),
           price: 25,
           imageSrc: "https://firebasestorage.googleapis.com/v0/b/plantilla-ecommerce-3852b.appspot.com/o/tienda1%2Fblusa-basica-3.svg?alt=media&token=fd664c6f-8cc0-4ffc-ac9a-fc2deb4225cb",
@@ -387,7 +373,6 @@ import {
         },
         {
           name: "Botella de Viaje",
-          store: "narc-ecommerce",
           slug: slugify("Botella de Viaje", { lower: true }),
           price: 50,
           imageSrc: "https://firebasestorage.googleapis.com/v0/b/plantilla-ecommerce-3852b.appspot.com/o/tienda1%2Ftermo-1.svg?alt=media&token=f3e0c44e-fcf0-4c7d-8170-9d352f4570e2",
@@ -420,7 +405,6 @@ import {
         },
         {
           name: "Bloc de Notas",
-          store: "narc-ecommerce",
           slug: slugify("Bloc de Notas", { lower: true }),
           price: 150,
           imageSrc: "https://firebasestorage.googleapis.com/v0/b/plantilla-ecommerce-3852b.appspot.com/o/tienda1%2Fnotepad-1.svg?alt=media&token=3db02fe6-8ef8-483a-80a7-b8b0a7e60be0",

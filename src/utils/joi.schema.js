@@ -3,7 +3,6 @@ import Joi from "joi";
 // Product schema
 export const createProductSchema = Joi.object({
   name: Joi.string().min(3).max(350).required(),
-  store: Joi.string().required(),
   price: Joi.number().min(0).required(),
   stock: Joi.number().min(0).required(),
   imageSrc: Joi.string().uri().required(),
@@ -19,7 +18,6 @@ export const createProductSchema = Joi.object({
 
 export const updateProductSchema = Joi.object({
   name: Joi.string().min(3).max(350).optional(),
-  store: Joi.string().optional(),
   price: Joi.number().min(0).optional(),
   stock: Joi.number().min(0).optional(),
   imageSrc: Joi.string().uri().optional(),

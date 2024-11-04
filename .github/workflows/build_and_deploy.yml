@@ -26,7 +26,8 @@ jobs:
     - name: 📦️ Checkout code
       uses: actions/checkout@v4
 
-    - uses: google-github-actions/auth@v2
+    - name: 🌐 Google Auth
+      uses: google-github-actions/auth@v2
       with:
         project_id: ${{ secrets.GCP_PROJECT_ID }}
         credentials_json: ${{ secrets.GCP_SA_KEY }}

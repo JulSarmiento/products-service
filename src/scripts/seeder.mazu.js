@@ -29,7 +29,6 @@ import {
       {
         companyName: "Mazu Store",
         header: {
-          companyName: "Mazu Store",
           firstLink: "Productos",
           secondLink: "Novedades",
           thirdLink: "Sobre Nosotros",
@@ -95,7 +94,6 @@ import {
       [
         {
           name: "Collares",
-          store: "mazu-store",
           slug: slugify("Collares", { lower: true }),
           description: "Collares de calidad para mascotas",
           imageSrc:
@@ -106,7 +104,6 @@ import {
         },
         {
           name: "Placas de Identificación",
-          store: "mazu-store",
           slug: slugify("Placas de Identificación", { lower: true }),
           description: "Placas de identificación personalizadas",
           imageSrc:
@@ -133,26 +130,22 @@ import {
       [
         {
           name: "Collares de Cuero",
-          store: "mazu-store",
           slug: slugify("Collares de Cuero", { lower: true }),
           categoryId: collarsCategoryId,
         },
         {
           name: "Collares de Nylon",
-          store: "mazu-store",
           slug: slugify("Collares de Nylon", { lower: true }),
           categoryId: collarsCategoryId,
         },
         // Subcategorías para la categoría "Placas de Identificación"
         {
           name: "Placas de Acero Inoxidable",
-          store: "mazu-store",
           slug: slugify("Placas de Acero Inoxidable", { lower: true }),
           categoryId: idTagsCategoryId,
         },
         {
           name: "Placas de Aluminio",
-          store: "mazu-store",
           slug: slugify("Placas de Aluminio", { lower: true }),
           categoryId: idTagsCategoryId,
         },
@@ -185,7 +178,6 @@ import {
       [
         {
           name: "Collar de Cuero Terracota",
-          store: "mazu-store",
           slug: slugify("Collar de Cuero Terracota", { lower: true }),
           price: 28,
           imageSrc:
@@ -217,7 +209,6 @@ import {
         },
         {
           name: "Collar de Cuero Negro Tachuelas",
-          store: "mazu-store",
           slug: slugify("Collar de Cuero Negro Tachuelas", { lower: true }),
           price: 28,
           imageSrc:
@@ -249,7 +240,6 @@ import {
         },
         {
           name: "Collar de Cuero Rosa con Tachuelas",
-          store: "mazu-store",
           slug: slugify("Collar de Cuero Rosa con Tachuelas", { lower: true }),
           price: 28,
           imageSrc:
@@ -281,7 +271,6 @@ import {
         },
         {
           name: "Collar de Cuero Verde",
-          store: "mazu-store",
           slug: slugify("Collar de Cuero Verde", { lower: true }),
           price: 28,
           imageSrc:
@@ -312,7 +301,6 @@ import {
         },
         {
           name: "Collar de Cuero Naranja",
-          store: "mazu-store",
           slug: slugify("Collar de Cuero Naranja", { lower: true }),
           price: 28,
           imageSrc:
@@ -345,7 +333,6 @@ import {
         // placas
         {
           name: "Placa de Identificación de Aluminio Azul",
-          store: "mazu-store",
           slug: slugify("Placa de Identificación de Aluminio Azul", {
             lower: true,
           }),
@@ -370,7 +357,6 @@ import {
         },
         {
           name: "Placa de Identificación de Aluminio Color Amarillo",
-          store: "mazu-store",
           slug: slugify("Placa de Identificación de Aluminio Color Amarillo", {
             lower: true,
           }),
@@ -395,7 +381,6 @@ import {
         },
         {
           name: "Placa de Identificación de Aluminio Color Verde",
-          store: "mazu-store",
           slug: slugify("Placa de Identificación de Aluminio Color Verde", {
             lower: true,
           }),
@@ -420,7 +405,6 @@ import {
         },
         {
           name: "Placa de Identificación de Acero Inoxidable",
-          store: "mazu-store",
           slug: slugify("Placa de Identificación de Acero Inoxidable", {
             lower: true,
           }),
@@ -445,7 +429,6 @@ import {
         },
         {
           name: "Placa de Identificación de Aluminio Color Rosado",
-          store: "mazu-store",
           slug: slugify("Placa de Identificación de Aluminio Color Rosado", {
             lower: true,
           }),
