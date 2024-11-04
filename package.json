@@ -7,9 +7,11 @@
   "scripts": {
     "test": "node --test --env-file=.env",
     "test:integration": "node --test --env-file=.env",
-    "start": "node  --watch --env-file=.env server.js",
+    "start:narc": "node  --watch --env-file=.env.narc server.js",
+    "start:mazu": "node  --watch --env-file=.env.mazu server.js",
     "start:nodemon": "nodemon server.js",
-    "seeder": "node --env-file=.env src/scripts/seeder.js"
+    "seeder-narc": "node --env-file=.env src/scripts/seeder.narc.js",
+    "seeder-mazu": "node --env-file=.env src/scripts/seeder.mazu.js"
   },
   "keywords": [],
   "author": "",

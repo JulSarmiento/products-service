@@ -3,13 +3,10 @@ FROM node:20
 ENV ENVIRONMENT=production
 ENV POSTGRESQL_URL null
 ENV POSTGRESQL_DIALECT=postgres
-ENV POSTGRESQL_SSL_CA='/certificado/ca.crt'
 
 COPY package*.json .
 
 RUN npm ci
-
-COPY ca.crt /certificado/ca.crt
 
 COPY src src
 

@@ -19,6 +19,7 @@ export const getProducts = async (req, res, next) => {
       where,
       limit,
       offset,
+      exclude: ["createdAt", "updatedAt"],
       include: [
         {
           model: Subcategory,
