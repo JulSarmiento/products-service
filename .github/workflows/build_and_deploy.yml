@@ -19,38 +19,38 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   build:
-    name: 👷 Build & Publish Registry 🐳
+    name: 👷🐳💸 Build & Publish Registry
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
+    - name: 📦️ Checkout code
       uses: actions/checkout@v4
 
-    - uses: 'google-github-actions/auth@v2'
+    - uses: google-github-actions/auth@v2
       with:
         project_id: ${{ secrets.GCP_PROJECT_ID }}
         credentials_json: ${{ secrets.GCP_SA_KEY }}
                
-    - name: Configure Docker
+    - name: 🏗️ Configure Docker
       run: |
         gcloud auth configure-docker
 
-    - name: Build Docker image
+    - name: 🐳 Build Docker image
       run: |
         docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/products-service:$GITHUB_SHA .
 
-    - name: Push Docker image to Artifact
+    - name: 💸 Push Docker image to Artifact
       run: |
         docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/products-service:${{ github.sha }}
 
   deploy-narc:
-    name: 🚀 NARC Deploy
+    name: 🚚🌐🚀 NARC Deploy
     runs-on: ubuntu-latest
     needs: build
     
     steps:
       - name: 🌐 Google Auth
-        uses: 'google-github-actions/auth@v2'
+        uses: google-github-actions/auth@v2
         with:
           project_id: ${{ secrets.GCP_PROJECT_ID }}
           credentials_json: ${{ secrets.GCP_SA_KEY }}
@@ -66,13 +66,13 @@ jobs:
             --set-secrets=POSTGRESQL_URL=POSTGRESQL_URL:latest,/certificado/ca.crt=SSL_CA_NARC:latest
 
   deploy-mazu:
-    name: 🚀 Mazu Deploy 
+    name: 🚚🌐🚀
     runs-on: ubuntu-latest
     needs: build
     
     steps:
       - name: 🌐 Google Auth
-        uses: 'google-github-actions/auth@v2'
+        uses: google-github-actions/auth@v2
         with:
           project_id: ${{ secrets.GCP_PROJECT_ID }}
           credentials_json: ${{ secrets.GCP_SA_KEY }}
