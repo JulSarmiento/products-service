@@ -17,7 +17,7 @@ import {
 
 const router = express.Router();
 
-router.get("/", [advanceSearch(["category", "subcategory"])], getProducts);
+router.get("/", [advanceSearch(["category", "subcategory"], [ "name", 'description'], ['price'])], getProducts);
 router.get("/:id", getProductById);
 router.get("/category/:id", getProductsByCategory);
 router.post("/", [validatedCreateProduct], createProduct);
